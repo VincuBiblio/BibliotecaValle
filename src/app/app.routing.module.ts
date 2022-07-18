@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
 import { LayoutComponent } from "./component/layout/layout.component";
-import { informeMensualComponent } from './component/informe-mensual/informe-mensual.component';
-
 const routes: Routes = [
   { path: '', redirectTo: 'auth/inicio_sesion', pathMatch: 'full' },
   {
@@ -20,11 +18,6 @@ const routes: Routes = [
       }
     ]
   },
-
-  {path: 'informe-mensual', component: informeMensualComponent},
-
-
-
 ]
 
 
