@@ -1,0 +1,250 @@
+<section>
+    <mat-card>
+        <div class="container-fluid" style="padding: 55px;" class="card">
+            <mat-card-title style="background-color:#a01b20; color:#ecb435; padding: 15px; border-radius: 10px">
+                INFORME MENSUAL
+            </mat-card-title>
+
+            <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+            </button>
+
+            <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+                <!-- OPCION 1-->
+                <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>OBJETIVOS</ng-template>
+
+                        <strong>1.1 General:</strong>
+                        <br>
+                        <strong> 1.1.1 </strong>
+                        Inculcar y fomentar en la comunidad el hábito y el placer de la lectura, el aprendizaje, la
+                        investigación y la utilización de las bibliotecas a lo largo de toda su vida.
+
+
+
+                        <div class="example-button-row">
+                            <div class="example-flex-container">
+                                <div class="example-button-container">
+                                    <button mat-button matStepperNext mat-mini-fab color="primary">
+                                        <mat-icon>forward</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+                </mat-step>
+
+                <!-- OPCION 2-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>ACTIVIDADES REALIZADAS</ng-template>
+
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Favorite food</mat-label>
+                            <input matInput placeholder="Ex. Pizza">
+                        </mat-form-field>
+                        <br>
+
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field>
+
+                    </form>
+
+
+                    <div class="example-button-row">
+
+                        <button mat-button matStepperPrevious mat-mini-fab color="primary"
+                            style="background-color: #a01b20; color:#FFFFFF;">
+                            <mat-icon>reply</mat-icon>
+                        </button>
+                        <button mat-button matStepperNext mat-mini-fab color="primary">
+                            <mat-icon>forward</mat-icon>
+                        </button>
+
+                    </div>
+
+
+
+
+                </mat-step>
+
+                <!-- OPCION 3-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>PLANEAMIENTO Y REALIZACIÓN DE LAS ACTIVIDADES</ng-template>
+
+                        <br>
+
+                        <strong>3.1 Recursos: (con que)</strong>
+                        <br>
+                        <br>
+
+                        <div style=" text-align: center;">
+
+                            
+                            <mat-form-field class="example-full-width" appearance="fill" >
+                                <mat-label>Ingrese recurso</mat-label>
+                                <input matInput placeholder="Ex. Computadora">
+                            </mat-form-field>
+
+                            <br>
+
+                            <button mat-mini-fab color="primary"
+                                        style="background-color: #ecb435; color:#FFFFFF;">
+                                        <mat-icon>library_add</mat-icon>
+                                    </button>
+
+
+                        </div>
+
+
+
+                       
+
+                        <br>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Recurso</th>
+                                    <th scope="col">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+
+                    </form>
+
+
+
+
+                    <div class="example-button-row">
+
+                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                            <mat-icon>reply</mat-icon>REGRESAR
+                        </button>
+                        <button mat-button matStepperNext mat-flat-button color="primary">SIGUIENTE <mat-icon>forward
+                            </mat-icon></button>
+                    </div>
+
+
+                </mat-step>
+
+                <!-- OPCION 4-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>RESUMEN DE BENEFICIARIOS</ng-template>
+
+                    </form>
+
+                    <div class="example-button-row">
+
+                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">REGRESAR
+                        </button>
+                        <button mat-button matStepperNext mat-flat-button color="primary">SIGUIENTE </button>
+                    </div>
+
+
+
+                </mat-step>
+
+                <!-- OPCION 5-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>NECESIDADES Y SUGERENCIAS DE LA BIBLIOTECA
+                        </ng-template>
+
+                    </form>
+                    <div class="example-button-row">
+
+                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                            <mat-icon>reply</mat-icon>
+                        </button>
+                        <button mat-button matStepperNext mat-flat-button color="primary">
+                            <mat-icon>forward</mat-icon>
+                        </button>
+                    </div>
+
+                </mat-step>
+
+                <!-- OPCION 6-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>RESULTADOS</ng-template>
+
+                    </form>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+
+                </mat-step>
+
+                <!-- OPCION 7-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>CONCLUSIONES</ng-template>
+
+                    </form>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+
+                </mat-step>
+
+                <!-- OPCION 8-->
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>ANEXOS Y VERIFICABLES
+                        </ng-template>
+
+                    </form>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+
+                </mat-step>
+
+
+
+                <!-- OPCION FINAL GUARDAR-->
+                <mat-step>
+                    <ng-template matStepLabel>GENERAR INFORME</ng-template>
+                    <p>You are now done.</p>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                    </div>
+                </mat-step>
+
+
+
+
+
+
+            </mat-stepper>
+        </div>
+    </mat-card>
+</section>>

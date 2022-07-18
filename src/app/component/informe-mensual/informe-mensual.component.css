@@ -1,0 +1,40 @@
+table {
+    width: 70%; 
+    border: 1px solid #0c3255;
+}
+
+
+.card {
+
+    border: 1px solid #0c3255;
+    border-inline: 5px solid #0c3255;
+    writing-mode: horizontal-tb;
+}
+
+
+
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+
+
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
