@@ -4,89 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
 
 <body>
-  <mat-drawer-container class="example-container">
+<mat-drawer-container class="example-container">
 
 
-    <mat-drawer mode="side" opened>
-      <div style="text-align: center;">
-        <img class="logo" src="/assets/images/programmer.png">
-        <br><br>
+  <mat-drawer mode="side" opened>
+    <div style="text-align: center;">
+      <img class="logo" src="/assets/images/programmer.png">
+      <br><br>
 
 
-      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div>
+      <h3 style="text-align: center;">Rosita Astudillo</h3>
+      <p style="text-align: center;">Bibliotecaria</p>
+      <p style="text-align: center;">0105345490</p>
 
       <mat-divider></mat-divider>
-      <div>
-        <h3 style="text-align: center;">Rosita Astudillo</h3>
-        <p style="text-align: center;">Bibliotecaria</p>
-        <p style="text-align: center;">0105345490</p>
 
-        <mat-divider></mat-divider>
+      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
 
-        <button mat-button class="button-accordion" routerLink="/registro-empresa">
-          <mat-icon>home</mat-icon>
-          <span>Home</span>
-        </button>
+      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+        <mat-icon>perm_identity</mat-icon>
+        <span>Clientes</span>
+      </button>
 
-        <button mat-button class="button-accordion" routerLink="/registro-empresa">
-          <mat-icon>perm_identity</mat-icon>
-          <span>Clientes</span>
-        </button>
+      <mat-accordion multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>business</mat-icon>
+              <span>Mi Espacio </span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-        <mat-accordion multi>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <mat-icon>business</mat-icon>
-                <span>Mi Espacio </span>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+          <button mat-button class="button-accordion" routerLink="/registro-empresa">
+            <mat-icon>add</mat-icon>
+            <span>Curso</span>
+          </button>
 
-            <button mat-button class="button-accordion" routerLink="/registro-empresa">
-              <mat-icon>add</mat-icon>
-              <span>Curso</span>
-            </button>
-
-            <button mat-button class="button-accordion" routerLink="/registro-empresa">
-              <mat-icon>add</mat-icon>
-              <span>Taller</span>
-            </button>
+          <button mat-button class="button-accordion" routerLink="/registro-empresa">
+            <mat-icon>add</mat-icon>
+            <span>Taller</span>
+          </button>
 
 
 
-          </mat-expansion-panel>
-        </mat-accordion>
+        </mat-expansion-panel>
+      </mat-accordion>
 
-        <button mat-button class="button-accordion" routerLink="/registro-empresa">
-          <mat-icon>add</mat-icon>
-          <span>Consulta Estadisticas</span>
-        </button>
+      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+        <mat-icon>add</mat-icon>
+        <span>Consulta Estadisticas</span>
+      </button>
 
-        <button mat-button class="button-accordion" routerLink="/informe-mensual">
-          <mat-icon>add</mat-icon>
-          <span>Informe Mensual</span>
-        </button>
+      <button mat-button class="button-accordion" routerLink="/informe-mensual">
+        <mat-icon>add</mat-icon>
+        <span>Informe Mensual</span>
+      </button>
 
-        <button mat-button class="button-accordion" routerLink="/registro-empresa">
-          <mat-icon>login</mat-icon>
-          <span>Cerrar Sesion</span>
-        </button>
+      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+        <mat-icon>login</mat-icon>
+        <span>Cerrar Sesion</span>
+      </button>
 
-      </div>
-    </mat-drawer>
+    </div>
+  </mat-drawer>
 
 
 
-    <mat-drawer-content>
-      <h3>CUERPO</h3>
-    </mat-drawer-content>
-  </mat-drawer-container>
+  <mat-drawer-content>
+    <h3>CUERPO</h3>
+  </mat-drawer-content>
+</mat-drawer-container>
 </body>
 
 
