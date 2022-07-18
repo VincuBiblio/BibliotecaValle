@@ -1,13 +1,10 @@
 table {
-    width: 70%; 
-    border: 1px solid #0c3255;
+    width: 70%;
 }
 
 
 .card {
 
-    border: 1px solid #0c3255;
-    border-inline: 5px solid #0c3255;
     writing-mode: horizontal-tb;
 }
 
