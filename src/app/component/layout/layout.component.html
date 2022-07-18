@@ -48,6 +48,8 @@
           </button>
         </mat-expansion-panel>
       </mat-accordion>
+
+      //ESTADISTICAS
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -56,12 +58,16 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/usuarios_por_edad'">
-          <span>POR EDAD</span>
+          <mat-icon>add</mat-icon>
+          <span>Por Edad</span>
         </button>
         <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/usuarios_por_servicio'">
-          <span>POR SERVICIO</span>
+          <mat-icon>add</mat-icon>
+          <span>Por Servicio</span>
         </button>
       </mat-expansion-panel>
+      //FIN ESTADISTICAS
+
       <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/informe-mensual'">
         <mat-icon>add</mat-icon>
         <span>Informe Mensual</span>
