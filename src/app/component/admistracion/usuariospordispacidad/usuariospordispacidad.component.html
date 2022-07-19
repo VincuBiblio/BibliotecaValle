@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="header">
+    <h1>{{titulo}}</h1>
+    <h2>USUARIOS POR GÉNERO</h2>
+  </div>
+  <mat-divider inset></mat-divider>
+  <div class="left">
+    <div>
+      <h3>CONSULTAR DATOS</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>MES Y AÑO</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView="multi-year"
+                        (monthSelected)="setMonthAndYear($event, dp)"
+                        panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field>
+      <button style="margin-left: 1%" mat-raised-button color="warn" (click)="consultar()">CONSULTAR <mat-icon>search</mat-icon> </button>
+    </div>
+    <mat-grid-list cols="3" rowHeight="50px">
+      <mat-grid-tile colspan="2">
+        <strong>
+          CUADRO DE DATOS SEGÚN LA DISCAPACIDAD
+        </strong>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <h2>%</h2>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        SI
+      </mat-grid-tile>
+      <mat-grid-tile><h3>0</h3></mat-grid-tile>
+      <mat-grid-tile><h3>0.00%</h3></mat-grid-tile>
+      <mat-grid-tile>
+        NO
+      </mat-grid-tile>
+      <mat-grid-tile><h3>249</h3></mat-grid-tile>
+      <mat-grid-tile><h3>100%</h3></mat-grid-tile>
+      <mat-grid-tile>
+        <h4>TOTAL: </h4>
+      </mat-grid-tile>
+      <mat-grid-tile><h2>298</h2></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="right">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <figure class="highcharts-figure">
+      <div id="container"></div>
+    </figure>
+  </div>
+</div>
+
+

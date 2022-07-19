@@ -18,6 +18,7 @@ import {MatDatepicker} from "@angular/material/datepicker";
 import {Usuariosporedades} from "../../../models/usuariosporedades";
 import {Datos} from "../../../models/datos";
 import {Usuariosporservicios} from "../../../models/usuariosporservicios";
+import {Usuariosporgeneros} from "../../../models/usuariosporgeneros";
 
 const moment = _rollupMoment || _moment;
 
@@ -36,9 +37,9 @@ export const MY_FORMATS = {
 };
 
 @Component({
-  selector: 'app-usuariosporservicios',
-  templateUrl: './usuariosporservicios.component.html',
-  styleUrls: ['./usuariosporservicios.component.css'],
+  selector: 'app-usuariosporgeneros',
+  templateUrl: './usuariosporgeneros.component.html',
+  styleUrls: ['./usuariosporgeneros.component.css'],
   providers: [
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
@@ -52,7 +53,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class UsuariosporserviciosComponent implements OnInit {
+export class UsuariosporgenerosComponent implements OnInit {
 
   date = new FormControl(moment());
 
@@ -83,39 +84,30 @@ export class UsuariosporserviciosComponent implements OnInit {
 
 
   ejemplo(): Usuariosporedades {
-    let ejemplos: Usuariosporservicios = new Usuariosporservicios();
+    let ejemplos: Usuariosporgeneros = new Usuariosporgeneros();
     let datos: Datos;
     ejemplos.mes = "FEBRERO"
     ejemplos.anio = "2022"
     ejemplos.total = 298;
     datos = new Datos();
-    datos.num = 16;
-    datos.pct = 5;
-    ejemplos.repositorio = datos;
+    datos.num = 87;
+    datos.pct = 34.64;
+    ejemplos.masculino = datos;
 
     datos = new Datos();
-    datos.num = 39;
-    datos.pct = 13;
-    ejemplos.bilioteca = datos;
+    datos.num = 162;
+    datos.pct = 65.06;
+    ejemplos.femenino = datos;
 
     datos = new Datos();
-    datos.num = 50;
-    datos.pct = 17;
-    ejemplos.internet = datos;
+    datos.num = 0;
+    datos.pct = 0.00;
+    ejemplos.otros = datos;
 
-    datos = new Datos();
-    datos.num = 51;
-    datos.pct = 17;
-    ejemplos.imprecopias = datos;
-
-    datos = new Datos();
-    datos.num = 142;
-    datos.pct = 48
-    ejemplos.tallactv = datos;
     return ejemplos;
   }
 
-  graficar(ejemplo: Usuariosporservicios) {
+  graficar(ejemplo: Usuariosporgeneros) {
     // Create the chart
     // @ts-ignore
     Highcharts.chart('container', {
@@ -128,7 +120,7 @@ export class UsuariosporserviciosComponent implements OnInit {
       },
       subtitle: {
         align: 'left',
-        text: 'Usuarios que usaron la biblioteca por servicios'
+        text: 'Usuarios que usaron la biblioteca por género'
       },
       accessibility: {
         announceNewData: {
@@ -165,24 +157,16 @@ export class UsuariosporserviciosComponent implements OnInit {
         name: "Usuarios",
         colorByPoint: true,
         data: [{
-          name: "REPOSITORIO",
-          y: ejemplo.repositorio?.num,
+          name: "MASCULINO",
+          y: ejemplo.masculino?.num,
         },
           {
-            name: "BIBLIOTECA (espacio y apoyo en tareas)",
-            y: ejemplo.bilioteca?.num,
+            name: "FEMENINO",
+            y: ejemplo.femenino?.num,
           },
           {
-            name: "INTERNET",
-            y: ejemplo.internet?.num,
-          },
-          {
-            name: "IMPRESIÓN/COPIA",
-            y: ejemplo.imprecopias?.num,
-          },
-          {
-            name: "TALLERES Y ACTIVIDADES CULTURALES",
-            y: ejemplo.tallactv?.num,
+            name: "OTRO",
+            y: ejemplo.otros?.num,
           }
         ]
       }]
