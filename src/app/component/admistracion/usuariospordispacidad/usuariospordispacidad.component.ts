@@ -115,7 +115,7 @@ export class UsuariospordispacidadComponent implements OnInit {
       },
       subtitle: {
         align: 'left',
-        text: 'Usuarios que usaron la biblioteca por género'
+        text: 'Usuarios que usaron la biblioteca por discapacidades'
       },
       accessibility: {
         announceNewData: {
