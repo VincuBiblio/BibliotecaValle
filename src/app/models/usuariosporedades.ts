@@ -1,3 +1,5 @@
+import {Datos} from "./datos";
+
 export class Usuariosporedades {
   mes?:String;
   anio?:String;
@@ -8,8 +10,4 @@ export class Usuariosporedades {
   jovenes?:Datos;
   adultos?:Datos;
   adultosmayores?:Datos;
-}
-export class Datos{
-  num?:Number;
-  pct?:Number;
 }

@@ -7,6 +7,8 @@ import {UsuariosporedadesComponent} from './usuariosporedades/usuariosporedades.
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UsuariosporserviciosComponent} from './usuariosporservicios/usuariosporservicios.component';
 import {informeMensualComponent} from "./informe-mensual/informe-mensual.component";
+import { UsuariosporgenerosComponent } from './usuariosporgeneros/usuariosporgeneros.component';
+import { UsuariospordispacidadComponent } from './usuariospordispacidad/usuariospordispacidad.component';
 
 
 const routes: Routes = [
@@ -19,9 +21,18 @@ const routes: Routes = [
     component: UsuariosporserviciosComponent
   },
   {
+    path: 'usuarios_por_genero',
+    component: UsuariosporgenerosComponent
+  },
+  {
+    path: 'usuarios_por_discapacidad',
+    component: UsuariospordispacidadComponent
+  },
+  {
     path: 'informe-mensual',
     component: informeMensualComponent
-  },
+  }
+
 
 ];
 
@@ -29,7 +40,9 @@ const routes: Routes = [
   declarations: [
     UsuariosporedadesComponent,
     UsuariosporserviciosComponent,
-    informeMensualComponent
+    informeMensualComponent,
+    UsuariosporgenerosComponent,
+    UsuariospordispacidadComponent
   ],
   exports: [RouterModule],
   imports: [

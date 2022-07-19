@@ -1,13 +1,47 @@
 table {
-    width: 70%;
+    width: 100%; 
+    
+    
 }
+
+.tabla-recursos{
+    width: 50%; 
+    border: 1px solid #ecb435;
+    margin: 0 auto;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+
+   
+    border-bottom: 1px solid #ecb435;
+    background-color: #aedaf5;
+    width: 25%;
+    
+ }
+
+ th{
+    background: #ecb435;
+    
+ }
 
 
 .card {
 
+    border: 1px solid #0c3255;
+    border-inline: 5px solid #0c3255;
     writing-mode: horizontal-tb;
 }
 
+.card21{
+    text-align: center;
+    width: 80%;
+    border: 1px solid #a01b20;
+    border-inline: 3px solid #a01b20;
+    background: #fefeff;
+    
+}
 
 
 
@@ -35,3 +69,12 @@ table {
     justify-content: center;
     width: 120px;
 }
+
+
+
+.center-content {
+    margin-top: 3%;
+    text-align: -webkit-center;
+    
+}
+
