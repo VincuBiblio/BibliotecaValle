@@ -9,6 +9,7 @@ import {UsuariosporserviciosComponent} from './usuariosporservicios/usuariospors
 import {informeMensualComponent} from "./informe-mensual/informe-mensual.component";
 import { UsuariosporgenerosComponent } from './usuariosporgeneros/usuariosporgeneros.component';
 import { UsuariospordispacidadComponent } from './usuariospordispacidad/usuariospordispacidad.component';
+import { TrasformaciondedatpsComponent } from './trasformaciondedatps/trasformaciondedatps.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     component: UsuariospordispacidadComponent
   },
   {
+    path: 'trasformaciones',
+    component: TrasformaciondedatpsComponent
+  },
+  {
     path: 'informe-mensual',
     component: informeMensualComponent
   }
@@ -42,7 +47,8 @@ const routes: Routes = [
     UsuariosporserviciosComponent,
     informeMensualComponent,
     UsuariosporgenerosComponent,
-    UsuariospordispacidadComponent
+    UsuariospordispacidadComponent,
+    TrasformaciondedatpsComponent
   ],
   exports: [RouterModule],
   imports: [
