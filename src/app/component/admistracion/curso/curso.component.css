@@ -1,14 +1,25 @@
 .mat-stepper-vertical {
   margin-top: 8px;
-  /*background: #E4EFF3;*/
+  background: #f2f9fc;
 }
 .example-card {
+  box-shadow: 12px 12px 12px #bebdbd;
   margin: 0 auto;
   width: 60%;
   max-height: 600px;
   background: rgba(255, 255, 255, 0.81);
   border: 1px solid #455a64;
   border-radius: 10px;
+}
+.example-cardinfo{
+  box-shadow: 12px 12px 12px #bebdbd;
+  max-width: 450px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid #676767;
+  text-align: center;
+  background: #f8f8f8;
 }
 mat-form-field{
   width: 100%;

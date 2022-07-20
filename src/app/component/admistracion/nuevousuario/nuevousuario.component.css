@@ -1,8 +1,9 @@
 .mat-stepper-vertical {
   margin-top: 8px;
-  /*background: #E4EFF3;*/
+  background: #f2f9fc;
 }
 .example-card {
+  box-shadow: 12px 12px 12px #bebdbd;
   margin: 0 auto;
   width: 60%;
   max-height: 600px;
@@ -71,5 +72,5 @@ strong{
   text-decoration: none;
 }
 .mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
+
 }
