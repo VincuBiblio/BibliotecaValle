@@ -1,4 +1,35 @@
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="NUEVO CLIENTE">NUEVO CLIENTE</mat-tab>
+  <mat-tab label="NUEVO CLIENTE">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <table style="width: 100%">
+            <tr aria-colspan="6">
+              <td colspan="1">
+                <strong>Cedula: </strong>
+              </td>
+              <td colspan="2" class="txt">
+                <input matInput placeholder="Cedula" autofocus>
+              </td>
+              <td colspan="1">
+                <strong>Nombres: </strong>
+              </td>
+              <td colspan="2" class="txt">
+                <input matInput placeholder="Nombres" required autofocus>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
   <mat-tab label="VER CLIENTES">VER CLIENTES</mat-tab>
 </mat-tab-group>
