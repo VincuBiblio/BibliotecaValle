@@ -5,6 +5,7 @@ import {IniciosesionComponent} from "./iniciosesion/iniciosesion.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MaterialModule} from "../../../material/material.module";
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -21,7 +22,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    HttpClientModule,
+
   ]
 })
 export class AuthModule { }

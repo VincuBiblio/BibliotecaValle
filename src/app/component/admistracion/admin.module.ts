@@ -9,7 +9,10 @@ import {UsuariosporserviciosComponent} from './usuariosporservicios/usuariospors
 import {informeMensualComponent} from "./informe-mensual/informe-mensual.component";
 import { UsuariosporgenerosComponent } from './usuariosporgeneros/usuariosporgeneros.component';
 import { UsuariospordispacidadComponent } from './usuariospordispacidad/usuariospordispacidad.component';
-import { TrasformaciondedatpsComponent } from './trasformaciondedatps/trasformaciondedatps.component';
+import {CursoComponent} from "./curso/curso.component";
+import {TallerComponent} from "./taller/taller.component";
+import {NuevousuarioComponent} from "./nuevousuario/nuevousuario.component";
+import {TrasformaciondedatpsComponent} from "./trasformaciondedatps/trasformaciondedatps.component";
 
 
 const routes: Routes = [
@@ -30,15 +33,25 @@ const routes: Routes = [
     component: UsuariospordispacidadComponent
   },
   {
+    path: 'informe-mensual',
+    component: informeMensualComponent
+  },
+  {
     path: 'trasformaciones',
     component: TrasformaciondedatpsComponent
   },
   {
-    path: 'informe-mensual',
-    component: informeMensualComponent
+  path: 'curso',
+    component: CursoComponent
+  },
+  {
+  path: 'taller',
+    component: TallerComponent
+  },
+  {
+  path: 'nuevousuario',
+    component: NuevousuarioComponent
   }
-
-
 ];
 
 @NgModule({
@@ -48,7 +61,10 @@ const routes: Routes = [
     informeMensualComponent,
     UsuariosporgenerosComponent,
     UsuariospordispacidadComponent,
-    TrasformaciondedatpsComponent
+    TrasformaciondedatpsComponent,
+    CursoComponent,
+    TallerComponent,
+    NuevousuarioComponent
   ],
   exports: [RouterModule],
   imports: [

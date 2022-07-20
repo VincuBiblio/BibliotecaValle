@@ -38,11 +38,15 @@
               <span>Mi Espacio</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <button mat-button class="button-accordion" routerLink="/registro-empresa">
+          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/nuevousuario'">
+            <mat-icon>add</mat-icon>
+            <span>Nuevo User</span>
+          </button>
+          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/curso'">
             <mat-icon>add</mat-icon>
             <span>Curso</span>
           </button>
-          <button mat-button class="button-accordion" routerLink="/registro-empresa">
+          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/taller'">
             <mat-icon>add</mat-icon>
             <span>Taller</span>
           </button>
@@ -95,7 +99,7 @@
         <mat-icon>add</mat-icon>
         <span>Informe Mensual</span>
       </button>
-      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="logout()">
         <mat-icon>login</mat-icon>
         <span>Cerrar Sesion</span>
       </button>

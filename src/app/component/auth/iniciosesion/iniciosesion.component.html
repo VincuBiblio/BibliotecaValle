@@ -6,30 +6,35 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <body>
 <div class="card">
   <div id="logo">
   </div>
   <div id="header">
-    <h2>BIBLIOTECA MUNICIPAL</h2>
-    <h2>INICIO SE SESIÓN</h2>
+    <strong style="font-size: large">BIBLIOTECA MUNICIPAL</strong><br>
+    <strong style="font-size: large">INICIO SE SESIÓN</strong><br>
+    <strong style="color: #a01b20">-</strong>
   </div>
-  <div id="body">
+  <div class="contenedor">
     <h3>INGRESE LAS CREDENCIALES</h3>
-    <form>
-      <mat-form-field appearance="outline">
-        <mat-label>USUARIO:</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>CLAVE:</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <button style="margin-bottom: 1%; color: white" mat-flat-button color="warn">
-        INGRESAR
-      </button>
+    <form [formGroup]="loginForm" class="login" >
+      <mat-card-content>
+        <strong> E-MAIL: </strong>
+        <input matInput type="email" formControlName="email" placeholder="Ex. abc@gmail.com" required [(ngModel)]="personaRequest.email">
+        <br>
+        <strong>CLAVE: </strong>
+        <input matInput type="password" formControlName="clave" placeholder="* * * * *" required [(ngModel)]="personaRequest.clave">
+      </mat-card-content>
+
     </form>
+    <div>
+      <button class="button" mat-raised-button color="primary" (click)="login(personaRequest)">INICIAR SESION</button>
+    </div>
   </div>
 </div>
 </body>

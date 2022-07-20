@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Personausuario} from "../../models/personausuario";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-layout',
@@ -7,10 +9,42 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() {
+
+  public email?: string;
+  panelOpenState = false;
+  personausuario: Personausuario = new Personausuario();
+  issloading = true;
+
+  constructor(private router: Router) {
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.issloading = false;
+    }, 1000)
   }
 
   ngOnInit(): void {
+    if (JSON.parse(sessionStorage['personausuario']) != "") {
+      this.personausuario = JSON.parse(sessionStorage['personausuario']);
+      this.email = JSON.parse(sessionStorage['personausuario']).email
+      sessionStorage.clear;
+    } else {
+      sessionStorage.clear;
+      localStorage.removeItem("personausuario");
+      sessionStorage.setItem('personausuario', JSON.stringify(""));
+      this.router.navigate(['auth/inicio_sesion']).then(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  logout(): void {
+    sessionStorage.clear;
+    localStorage.removeItem("personausuario");
+    sessionStorage.setItem('personausuario', JSON.stringify(""));
+    this.router.navigate(['/auth/inicio_sesion']).then(() => {
+    });
   }
 
 }

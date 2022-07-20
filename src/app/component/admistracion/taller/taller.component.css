@@ -1,0 +1,72 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+  /*background: #E4EFF3;*/
+}
+.example-card {
+  margin: 0 auto;
+  width: 60%;
+  max-height: 600px;
+  background: rgba(255, 255, 255, 0.81);
+  border: 1px solid #455a64;
+  border-radius: 10px;
+}
+mat-form-field{
+  width: 100%;
+  border-radius: 8px;
+  height:60px;
+}
+.wit{
+  width: 100%;
+  border-radius: 8px;
+  height:40px;
+}
+strong{
+  color: #043e6e;
+  font-size: 14px;
+  width: 60%;
+  text-align: end;
+}
+
+.txt{
+  width: 70%;
+}
+.txt input {
+  display: block;
+  width: 90%;
+  padding: 15px 5px;
+  margin-bottom: 2%;
+  font-size: 16px;
+  border: 1px solid #F2921D;
+  transition: border-width 0.2s ease;
+  border-radius: 4px;
+  color: #000000;
+}
+.txt input + i.fa {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin-top: -47px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.1s ease-in;
+}
+.txt input:focus {
+  outline: none;
+  font-size: 16px;
+  width: 80%;
+  color: #000000;
+  border-color: #F2921D;
+  border-left-width: 25px;
+}
+.txt input:focus + i.fa {
+  opacity: 1;
+  width: 80%;
+  left: 10px;
+  transition: all 0.25s ease-out;
+}
+.txt a {
+  font-size: 0.8em;
+  width: 85%;
+  color: #F2921D;
+  text-decoration: none;
+}
