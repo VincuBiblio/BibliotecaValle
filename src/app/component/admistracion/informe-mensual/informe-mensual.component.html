@@ -1,5 +1,697 @@
 <section>
-    
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+        <!--Primera opcion-->
+
+        <mat-step [stepControl]="firstFormGroup2">
+            <form [formGroup]="firstFormGroup2">
+                <ng-template matStepLabel>
+                    <h3><strong>OBJETIVOS</strong></h3>
+                </ng-template>
+
+
+                <div class="center-content">
+                    <mat-card class="card21">
+
+
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <h4> <strong> 1.1 General:</strong> <br></h4>
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <p ALIGN=left><strong>1.1.1</strong> Inculcar y fomentar en la comunidad el hábito y el
+                                    placer de
+                                    la lectura, el aprendizaje, la investigación y la utilización de las bibliotecas a
+                                    lo largo de toda su vida.
+                                </p>
+
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <h4> <strong> 1.2 Específicos:</strong> <br></h4>
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <p ALIGN=left><strong>1.1.1</strong> Organizar actividades que estimulen la
+                                    concienciación y la
+                                    sensibilización en el plano cultural y social.
+                                </p>
+
+                                <p ALIGN=left><strong>1.1.2</strong> Despertar, crear y extender el gusto por la lectura
+                                    a través
+                                    de programas de educación no formal para desarrollar la imaginación y la
+                                    creatividad.
+
+                                </p>
+
+                                <p ALIGN=left><strong>1.1.3</strong> Enseñar a los usuarios a buscar, organizar y
+                                    aplicar la
+                                    información disponible, a través de las salas de cómputo y el uso de la tecnología
+                                    disponible en cada biblioteca.
+
+                                </p>
+
+                                <p ALIGN=left><strong>1.1.4</strong> Gestionar, organizar y ejecutar actividades que
+                                    vinculen a la
+                                    sociedad y fortalezcan la identidad cultural del cantón Cuenca.
+
+                                </p>
+
+                                <p ALIGN=left><strong>1.1.5</strong> Fortalecer la conectividad y el uso de la
+                                    información digital
+                                    para generar conocimiento a través del uso de la tecnología.
+
+                                </p>
+
+                                <p ALIGN=left><strong>1.1.6</strong> Elaborar y mantener actualizados los procesos
+                                    técnicos de la
+                                    biblioteca municipal para facilitar la investigación bibliográfica de los usuarios.
+
+                                </p>
+
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-card>
+                </div>
+
+                <div class="example-button-row">
+
+
+                    <button mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+            </form>
+        </mat-step>
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Segunda opcion-->
+        <mat-step [stepControl]="secondFormGroup2">
+            <form [formGroup]="secondFormGroup2">
+                <ng-template matStepLabel>
+                    <h4><strong>ACTIVIDADES REALIZADAS</strong></h4>
+                </ng-template>
+
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>DESCRIPCIÓN DE ACTIVIDADES:</strong></h3>
+                            <h4>Las labores desempeñadas en la Biblioteca Municipal de El Valle durante el mes
+                                de mayo consisten en:
+                            </h4>
+                            <br>
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 50%;">
+                                <mat-label>Ingrese Actividad</mat-label>
+                                <textarea matInput placeholder="Ex. Promocionar la mediación lectora..."
+                                    #actprincipal></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Actividad(actprincipal.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaActividad==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 90%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Mis Actividades</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosActividad of actividad; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{actividad[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-mini-fab color="primary"
+                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                    (click)=" eliminar_Actividad(actividad[i])">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todas_Actividades()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+            </form>
+        </mat-step>
+
+
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Tercera opcion-->
+        <mat-step [stepControl]="secondFormGroup2">
+            <form [formGroup]="secondFormGroup2">
+                <ng-template matStepLabel>
+                    <h4><strong>PLANEAMIENTO Y REALIZACIÓN DE LAS ACTIVIDADES</strong></h4>
+                </ng-template>
+
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>3.1 Recursos:</strong></h3>
+                            <h4>(con que)
+                            </h4>
+
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+                                <mat-label>Ingrese recurso</mat-label>
+                                <textarea matInput placeholder="Ex. Computadora..." #actrecurso></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Recurso(actrecurso.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaRecurso==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 40%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Mis Recursos</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosRecursos of recurso; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{recurso[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-mini-fab color="primary"
+                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                    (click)=" eliminar_Recurso(recurso[i])">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todos_Recursos()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>3.2 Estrategias:</strong></h3>
+                            <h4>(como)
+                            </h4>
+
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+                                <mat-label>Ingrese estrategia</mat-label>
+                                <textarea matInput placeholder="Ex. Promocionar  la participación de..."
+                                    #actestrategia></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Estrategia(actestrategia.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaEstrategia==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 50%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Mis Estrategias</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosEstrategias of estrategia; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{estrategia[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-mini-fab color="primary"
+                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                    (click)=" eliminar_Estrategia(estrategia[i])">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todas_Estrategias()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+            </form>
+        </mat-step>
+
+
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Cuarta opcion-->
+        <mat-step [stepControl]="secondFormGroup3">
+            <form [formGroup]="secondFormGroup3">
+                <ng-template matStepLabel>
+                    <h4><strong>RESUMEN DE BENEFICIARIOS</strong></h4>
+                </ng-template>
+
+                <div class="center-content">
+                    <mat-card class="card21">
+                        <mat-list>
+                            <mat-list-item>
+                                <h4>Se beneficiaron <strong>x</strong> Usuarios quienes hicieron uso del repositorio.
+                                </h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+
+                            <mat-list-item>
+                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso de biblioteca
+                                    (espacio-apoyo-tareas escolares).</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+
+
+                            <mat-list-item>
+                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso de Internet.</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+
+                            <mat-list-item>
+                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso del servicio de impresiones y copias.</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+
+                            <mat-list-item>
+                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso de talleres.</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+
+                            <mat-list-item> <h4>Lista Array</h4></mat-list-item>
+                        </mat-list>
+                    </mat-card>
+                </div>
+
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+            </form>
+        </mat-step>
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Quinta opcion-->
+        <mat-step [stepControl]="secondFormGroup3">
+            <form [formGroup]="secondFormGroup3">
+                <ng-template matStepLabel>
+                    <h4><strong>NECESIDADES Y SUGERENCIAS DE LA BIBLIOTECA</strong></h4>
+                </ng-template>
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>Descripción necesidades y sugerencias:</strong></h3>
+                            <h4>Las necesidades de la biblioteca son:
+                            </h4>
+
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+                                <mat-label>Ingrese necesidad</mat-label>
+                                <textarea matInput placeholder="Ex. -	Técnico para el mantenimiento de ..."
+                                    #actnecesidad></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Necesidad(actnecesidad.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaNecesidad==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 50%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Necesidades</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosNecedidaes of necesidad; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{necesidad[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-mini-fab color="primary"
+                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                    (click)=" eliminar_Necesidad(necesidad[i])">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todas_Necesidades()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+            </form>
+        </mat-step>
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Sexta opcion-->
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>
+                    <h4><strong>sadasd</strong></h4>
+                </ng-template>
+                
+                asdasd
+
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+            </form>
+        </mat-step>
+
+
+        <!--Ultima opción-->
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------>
+<section>
+
     <mat-card>
         <div class="container-fluid" style="padding: 55px;" class="card">
 
@@ -10,358 +702,8 @@
 
             <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
 
-                <!-- OPCION 1-->
-                <mat-step [stepControl]="firstFormGroup">
-                    <form [formGroup]="firstFormGroup">
-                        <ng-template matStepLabel>OBJETIVOS</ng-template>
 
-                        <strong>1.1 General:</strong>
-                        <br>
-                        <strong> 1.1.1 </strong>
-                        Inculcar y fomentar en la comunidad el hábito y el placer de la lectura, el aprendizaje, la
-                        investigación y la utilización de las bibliotecas a lo largo de toda su vida.
-
-
-
-                        <div class="example-button-row">
-                            <div class="example-flex-container">
-                                <div class="example-button-container">
-                                    <button mat-button matStepperNext mat-mini-fab color="primary"
-                                        style="background-color: #0c3255; color:#FFFFFF;">
-                                        <mat-icon>forward</mat-icon>
-                                    </button>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </form>
-                </mat-step>
-
-                <!-- OPCION 2-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>ACTIVIDADES REALIZADAS</ng-template>
-
-                        <div class="center-content">
-
-
-                            <mat-card class="card21">
-
-
-
-                                <div>
-
-                                    <h3><strong>DESCRIPCIÓN DE ACTIVIDADES:</strong></h3>
-                                    <h4>Las labores desempeñadas en la Biblioteca Municipal de El Valle durante el mes
-                                        de mayo consisten en:
-                                    </h4>
-                                    <br>
-                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
-                                        <mat-label>Ingrese Actividad</mat-label>
-                                        <input matInput placeholder="Promocionar la mediación lectora...">
-                                    </mat-form-field>
-
-
-
-                                    <button mat-mini-fab color="primary"
-                                        style="background-color: #ecb435; color:#FFFFFF;">
-                                        <mat-icon>library_add</mat-icon>
-                                    </button>
-
-                                    <br>
-                                    <br>
-
-
-                                    <body>
-                                        <div style="text-align:center;">
-                                            <table class="tabla-recursos" style=" width: 90%;">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th colspan="2">Estrategia</th>
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Se promociona taller recreativo con adultos mayores</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Se prepara material para realizar actividad con adultos mayores
-
-                                                    </td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-
-                                            </table>
-
-
-                                            <br>
-
-                                        </div>
-                                    </body>
-
-                                </div>
-
-
-                            </mat-card>
-
-                        </div>
-                    </form>
-
-
-                    <div class="example-button-row">
-
-                        <button mat-button matStepperPrevious mat-mini-fab color="primary"
-                            style="background-color: #a01b20; color:#FFFFFF;">
-                            <mat-icon>reply</mat-icon>
-                        </button>
-                        <button mat-button matStepperNext mat-mini-fab color="primary">
-                            <mat-icon>forward</mat-icon>
-                        </button>
-
-                    </div>
-
-
-
-
-                </mat-step>
-
-                <!-- OPCION 3-->
-
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>PLANEAMIENTO Y REALIZACIÓN DE LAS ACTIVIDADES</ng-template>
-
-
-
-                        <div class="center-content">
-
-
-                            <mat-card class="card21">
-
-
-
-                                <div>
-
-                                    <h3><strong>3.1 Recursos: </strong> </h3>
-                                    <h4> (con que)</h4>
-                                    <br>
-                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
-                                        <mat-label>Ingrese recurso</mat-label>
-                                        <input matInput placeholder="Ex. Computadora">
-                                    </mat-form-field>
-
-
-
-                                    <button mat-mini-fab color="primary"
-                                        style="background-color: #ecb435; color:#FFFFFF;">
-                                        <mat-icon>library_add</mat-icon>
-                                    </button>
-
-                                    <br>
-                                    <br>
-
-
-                                    <body>
-                                        <div style="text-align:center;">
-                                            <table class="tabla-recursos">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th colspan="2">Recurso</th>
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Computadorasasa</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Computad</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-
-                                            </table>
-
-
-                                            <br>
-
-                                        </div>
-                                    </body>
-
-                                </div>
-
-
-                            </mat-card>
-
-                        </div>
-
-
-
-                        <div class="center-content">
-
-
-                            <mat-card class="card21">
-
-
-
-                                <div>
-
-                                    <h3><strong>3.2 Estrategias:</strong></h3>
-                                    <h4>(como)</h4>
-                                    <br>
-                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
-                                        <mat-label>Ingrese Estrategia</mat-label>
-                                        <input matInput placeholder="Promocionar  la participación de">
-                                    </mat-form-field>
-
-
-
-                                    <button mat-mini-fab color="primary"
-                                        style="background-color: #ecb435; color:#FFFFFF;">
-                                        <mat-icon>library_add</mat-icon>
-                                    </button>
-
-                                    <br>
-                                    <br>
-
-
-                                    <body>
-                                        <div style="text-align:center;">
-                                            <table class="tabla-recursos" style=" width: 90%;">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th colspan="2">Estrategia</th>
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Promocionar la participación de los niños y niñas de 5 a 13 años
-                                                        en las mediaciones lectoras</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Coordinar con el Centro de Salud de El Valle actividades con el
-                                                        club de crónicos diabéticos e hipertensos
-                                                    </td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-
-                                            </table>
-
-
-                                            <br>
-
-                                        </div>
-                                    </body>
-
-                                </div>
-
-
-                            </mat-card>
-
-                        </div>
-
-
-                    </form>
-
-
-                    <div class="example-button-row">
-
-                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
-                            <mat-icon>reply</mat-icon>REGRESAR
-                        </button>
-                        <button mat-button matStepperNext mat-flat-button
-                            style="background-color: #ecb435; color:#FFFFFF;">SIGUIENTE <mat-icon>forward
-                            </mat-icon></button>
-                    </div>
-
-
-                </mat-step>
-
-
-
-
-
-                <!-- OPCION 4-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>RESUMEN DE BENEFICIARIOS</ng-template>
-
-                        <div class="center-content">
-                            <mat-card class="card21">
-                                <mat-list>
-                                    <mat-list-item>Se beneficiaron 33 Usuarios quienes hicieron uso del repositorio.
-                                    </mat-list-item>
-                                    <mat-divider></mat-divider>
-                                    <mat-list-item>Dato</mat-list-item>
-                                    <mat-divider></mat-divider>
-                                    <mat-list-item>Dato</mat-list-item>
-                                </mat-list>
-                            </mat-card>
-                        </div>
-
-
-
-                    </form>
-
-                    <div class="example-button-row">
-
-                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">REGRESAR
-                        </button>
-                        <button mat-button matStepperNext mat-flat-button color="primary">SIGUIENTE </button>
-                    </div>
-
-
-
-                </mat-step>
-
+               
                 <!-- OPCION 5-->
                 <mat-step [stepControl]="secondFormGroup">
                     <form [formGroup]="secondFormGroup">
@@ -474,7 +816,7 @@
                                 <div>
 
 
-                                    <h4> Las resultados  de la biblioteca son:</h4>
+                                    <h4> Las resultados de la biblioteca son:</h4>
                                     <br>
                                     <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
                                         <mat-label>Ingrese resultado</mat-label>
@@ -540,7 +882,7 @@
                             </mat-card>
 
                         </div>
-                        
+
                     </form>
                     <div>
                         <button mat-button matStepperPrevious>Back</button>
@@ -595,8 +937,6 @@
                         <button mat-button (click)="stepper.reset()">Reset</button>
                     </div>
                 </mat-step>
-
-
 
 
 
