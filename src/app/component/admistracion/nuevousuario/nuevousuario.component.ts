@@ -15,7 +15,8 @@ export class NuevousuarioComponent implements OnInit {
   isLinear = true;
   firstFormGroup!: FormGroup;
   personausuario: Personausuario = new Personausuario();
-
+  issloading=true;
+  siexiste?:boolean
 
   omit_special_char(event: { charCode: any; }) {
     var k;
@@ -33,6 +34,7 @@ export class NuevousuarioComponent implements OnInit {
   constructor(private router: Router,private _formBuilder: FormBuilder, private inisiosessionService:IniciarsesionService) { }
 
   ngOnInit(): void {
+
     this.firstFormGroup = this._formBuilder.group({
       cedula: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       nombres: ['', Validators.required],
@@ -44,6 +46,8 @@ export class NuevousuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       clave: ['', Validators.required],
     });
+    this.issloading=false;
+    this.personausuario;
   }
   registrar(personausuario: Personausuario) {
 
@@ -79,3 +83,6 @@ export class NuevousuarioComponent implements OnInit {
     })
   }
 }
+
+
+

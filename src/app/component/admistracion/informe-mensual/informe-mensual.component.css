@@ -25,6 +25,8 @@ th, td {
     background: #ecb435;
     
  }
+ 
+ 
 
 
 .card {
@@ -36,7 +38,7 @@ th, td {
 
 .card21{
     text-align: center;
-    width: 80%;
+    width: 95%;
     border: 1px solid #a01b20;
     border-inline: 3px solid #a01b20;
     background: #fefeff;
