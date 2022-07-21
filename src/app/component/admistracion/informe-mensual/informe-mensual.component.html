@@ -159,10 +159,10 @@
                                             </td>
 
                                             <td>
-                                                <button mat-mini-fab color="primary"
-                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
                                                     (click)=" eliminar_Actividad(actividad[i])">
-                                                    <mat-icon>delete</mat-icon>
+                                                    <mat-icon>remove_circle_outline</mat-icon>
                                                 </button>
                                             </td>
 
@@ -282,10 +282,10 @@
                                             </td>
 
                                             <td>
-                                                <button mat-mini-fab color="primary"
-                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
                                                     (click)=" eliminar_Recurso(recurso[i])">
-                                                    <mat-icon>delete</mat-icon>
+                                                    <mat-icon>remove_circle_outline</mat-icon>
                                                 </button>
                                             </td>
 
@@ -381,10 +381,10 @@
                                             </td>
 
                                             <td>
-                                                <button mat-mini-fab color="primary"
-                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
                                                     (click)=" eliminar_Estrategia(estrategia[i])">
-                                                    <mat-icon>delete</mat-icon>
+                                                    <mat-icon>remove_circle_outline</mat-icon>
                                                 </button>
                                             </td>
 
@@ -467,7 +467,8 @@
                             <mat-divider></mat-divider>
 
                             <mat-list-item>
-                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso del servicio de impresiones y copias.</h4>
+                                <h4>Se beneficiaron <strong>x</strong> usuarios quienes hicieron uso del servicio de
+                                    impresiones y copias.</h4>
                             </mat-list-item>
                             <mat-divider></mat-divider>
 
@@ -476,7 +477,9 @@
                             </mat-list-item>
                             <mat-divider></mat-divider>
 
-                            <mat-list-item> <h4>Lista Array</h4></mat-list-item>
+                            <mat-list-item>
+                                <h4>Lista Array</h4>
+                            </mat-list-item>
                         </mat-list>
                     </mat-card>
                 </div>
@@ -564,10 +567,10 @@
                                             </td>
 
                                             <td>
-                                                <button mat-mini-fab color="primary"
-                                                    style="background-color: #a01b20; color:#FFFFFF;"
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
                                                     (click)=" eliminar_Necesidad(necesidad[i])">
-                                                    <mat-icon>delete</mat-icon>
+                                                    <mat-icon>remove_circle_outline</mat-icon>
                                                 </button>
                                             </td>
 
@@ -619,12 +622,257 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Sexta opcion-->
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
+        <mat-step [stepControl]="secondFormGroup3">
+            <form [formGroup]="secondFormGroup3">
                 <ng-template matStepLabel>
-                    <h4><strong>sadasd</strong></h4>
+                    <h4><strong>RESULTADOS</strong></h4>
                 </ng-template>
-                
+
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>Descripción resultados:</strong></h3>
+                            <h4>Las resultados de la biblioteca son:
+                            </h4>
+
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+                                <mat-label>Ingrese resultado</mat-label>
+                                <textarea matInput placeholder="Ex.Voluntad y compromiso de servicios ..."
+                                    #actresultado></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Resultado(actresultado.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaResultado==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 60%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Resultados</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosResul of resultado; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{resultado[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
+                                                    (click)=" eliminar_Resultado(resultado[i])">
+                                                    <mat-icon>remove_circle_outline</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todos_Resultados()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+            </form>
+        </mat-step>
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Sextima opcion-->
+        <mat-step [stepControl]="secondFormGroup3">
+            <form [formGroup]="secondFormGroup3">
+                <ng-template matStepLabel>
+                    <h4><strong>CONCLUSIONES</strong></h4>
+                </ng-template>
+
+                <div class="center-content">
+
+
+                    <mat-card class="card21">
+
+
+                        <div>
+
+                            <h3><strong>Descripción conclusiones:</strong></h3>
+                            <h4>Las conclusiones de la biblioteca son:
+                            </h4>
+
+
+
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+                                <mat-label>Ingrese conclusion</mat-label>
+                                <textarea matInput placeholder="Ex.Durante este mes se han realizado activ..."
+                                    #actconclusion></textarea>
+                            </mat-form-field>
+
+                            <br>
+
+
+                            <button mat-mini-fab color="primary" style="background-color: #ecb435; color:#FFFFFF;"
+                                (click)=" agregar_Conclusion(actconclusion.value)">
+                                <mat-icon>library_add</mat-icon>
+                            </button>
+
+
+
+
+
+
+                            <br>
+                            <br>
+
+
+                            <body>
+                                <div style="text-align:center;" *ngIf="visibilidadTablaConclusion==true">
+
+
+
+                                    <table class="tabla-recursos" style=" width: 70%;">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th colspan="2">Mis conclusiones</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tr style="text-align: center;"
+                                            *ngFor="let datosConclu of conclusion; let i=index">
+
+                                            <td style="text-align:left ; width:5px">
+                                                <h4>{{conclusion[i]}}</h4>
+                                            </td>
+
+                                            <td>
+                                                <button mat-stroked-button color="primary"
+                                                    style="background-color: #c0e4fb; color:#0f0535;"
+                                                    (click)=" eliminar_Conclusion(conclusion[i])">
+                                                    <mat-icon>remove_circle_outline</mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+
+                                    </table>
+
+
+                                    <br>
+
+
+                                    <div class="example-button-row">
+
+                                        <button mat-button matStepperPrevious
+                                            style="background-color: #a01b20; color:#FFFFFF;"
+                                            (click)="borrar_Todas_Conclusiones()">
+                                            <mat-icon>delete</mat-icon>BORRAR TABLA
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </body>
+
+                        </div>
+
+
+                    </mat-card>
+
+                </div>
+
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+            </form>
+        </mat-step>
+
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Octava opcion-->
+        <mat-step [stepControl]="secondFormGroup3">
+            <form [formGroup]="secondFormGroup3">
+                <ng-template matStepLabel>
+                    <h4><strong>ANEXOS Y VERIFICABLES</strong></h4>
+                </ng-template>
+
                 asdasd
 
 
@@ -644,10 +892,25 @@
 
         <!--Ultima opción-->
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
+            <ng-template matStepLabel>
+                <h4><strong>FINALIZAR INFORME</strong></h4>
+            </ng-template>
             <p>You are now done.</p>
+
+            <div class="example-button-row">
+
+                <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                    <mat-icon>reply</mat-icon>REGRESAR
+                </button>
+
+                <button mat-button matStepperNext mat-flat-button (click)="generarDoc()"
+                    style="background-color: #ecb435; color:#000000;">
+                    <mat-icon>save_alt
+                    </mat-icon>GENERAR DOCUMENTO
+                </button>
+            </div>
+
             <div>
-                <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
         </mat-step>
@@ -655,293 +918,9 @@
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!------------------------------------------------------>
-<section>
-
-    <mat-card>
-        <div class="container-fluid" style="padding: 55px;" class="card">
-
-
-            <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-            </button>
-
-            <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-
-
-               
-                <!-- OPCION 5-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>NECESIDADES Y SUGERENCIAS DE LA BIBLIOTECA
-                        </ng-template>
-
-
-                        <div class="center-content">
-
-
-                            <mat-card class="card21">
-
-
-
-                                <div>
-
-
-                                    <h4> Las necesidades de la biblioteca son:</h4>
-                                    <br>
-                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
-                                        <mat-label>Ingrese Necesidad</mat-label>
-                                        <input matInput placeholder="Ex. Técnico para el mantenimiento...">
-                                    </mat-form-field>
-
-
-
-                                    <button mat-mini-fab color="primary"
-                                        style="background-color: #ecb435; color:#FFFFFF;">
-                                        <mat-icon>library_add</mat-icon>
-                                    </button>
-
-                                    <br>
-                                    <br>
-
-
-                                    <body>
-                                        <div style="text-align:center;">
-                                            <table class="tabla-recursos">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th colspan="2">Necesidades</th>
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Técnico para el mantenimiento de las computadoras
-                                                    </td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Dato Información</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-
-                                            </table>
-
-
-                                            <br>
-
-                                        </div>
-                                    </body>
-
-                                </div>
-
-
-                            </mat-card>
-
-                        </div>
-
-                    </form>
-                    <div class="example-button-row">
-
-                        <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
-                            <mat-icon>reply</mat-icon>
-                        </button>
-                        <button mat-button matStepperNext mat-flat-button color="primary">
-                            <mat-icon>forward</mat-icon>
-                        </button>
-                    </div>
-
-                </mat-step>
-
-                <!-- OPCION 6-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>RESULTADOS</ng-template>
-
-                        <div class="center-content">
-
-
-                            <mat-card class="card21">
-
-
-
-                                <div>
-
-
-                                    <h4> Las resultados de la biblioteca son:</h4>
-                                    <br>
-                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
-                                        <mat-label>Ingrese resultado</mat-label>
-                                        <input matInput placeholder="Ex. Voluntad y compromiso de...">
-                                    </mat-form-field>
-
-
-
-                                    <button mat-mini-fab color="primary"
-                                        style="background-color: #ecb435; color:#FFFFFF;">
-                                        <mat-icon>library_add</mat-icon>
-                                    </button>
-
-                                    <br>
-                                    <br>
-
-
-                                    <body>
-                                        <div style="text-align:center;">
-                                            <table class="tabla-recursos">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th colspan="2">Resultados</th>
-
-                                                    </tr>
-                                                </thead>
-
-
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Técnico para el mantenimiento de las computadoras
-                                                    </td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-                                                <tr style="text-align: center;">
-
-                                                    <td>Dato Información</td>
-                                                    <td> <button mat-mini-fab color="primary"
-                                                            style="background-color: #a01b20; color:#FFFFFF;">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button></td>
-                                                </tr>
-
-
-                                            </table>
-
-
-                                            <br>
-
-                                        </div>
-                                    </body>
-
-                                </div>
-
-
-                            </mat-card>
-
-                        </div>
-
-                    </form>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-
-                </mat-step>
-
-                <!-- OPCION 7-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>CONCLUSIONES</ng-template>
-
-                        <mat-card>
-                            <mat-form-field class="example-full-width" appearance="fill" style="width: 50%;">
-                                <mat-label>Conclusion</mat-label>
-                                <textarea matInput
-                                    placeholder="Ex. Durante este mes se han realizado actividades de..."></textarea>
-                            </mat-form-field>
-                        </mat-card>
-
-                    </form>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-
-                </mat-step>
-
-                <!-- OPCION 8-->
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>ANEXOS Y VERIFICABLES
-                        </ng-template>
-
-                    </form>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-
-                </mat-step>
-
-
-
-                <!-- OPCION FINAL GUARDAR-->
-                <mat-step>
-                    <ng-template matStepLabel>GENERAR INFORME</ng-template>
-                    <p>You are now done.</p>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
-                    </div>
-                </mat-step>
-
-
-
-
-            </mat-stepper>
-        </div>
-    </mat-card>
-</section>>
+<br>
+<button (click)="generarDoc()"
+                    style="background-color: #ecb435; color:#000000;">
+                    <mat-icon>save_alt
+                    </mat-icon>GENERAR DOCUMENTO
+                </button>
