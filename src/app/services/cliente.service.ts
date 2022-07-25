@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Personausuario} from "../models/personausuario";
 import {Observable} from "rxjs";
@@ -19,6 +19,6 @@ export class ClienteService {
   }
 
   saveCliente(personaRequest: Personausuario): Observable<Personausuario> {
-    return this.http.post<Personausuario>(this.urlEndPoint +"/registroCliente", personaRequest,{headers: this.httpHeaders})
+    return this.http.post<Personausuario>(this.urlEndPoint + "/registroCliente", personaRequest, {headers: this.httpHeaders})
   }
 }
