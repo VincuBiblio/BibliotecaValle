@@ -6,7 +6,7 @@
         <mat-card-subtitle>DATOS DEL CLIENTE</mat-card-subtitle>
       </mat-card-header>
       <form [formGroup]="formGrupos">
-      <mat-card-content>
+        <mat-card-content>
           <table style="width: 100%">
             <tr aria-colspan="6">
               <td colspan="1">
@@ -77,17 +77,17 @@
                 <mat-error *ngIf="formGrupos.controls.email.invalid">Email requerido</mat-error>
               </td>
               <td colspan="1" class="txt">
-                <input matInput  type="email"required autofocus formControlName="email">
+                <input matInput type="email" required autofocus formControlName="email">
               </td>
               <td colspan="1">
                 <strong>Teléfono: </strong>
                 <mat-error *ngIf="formGrupos.controls.telefono.invalid">Teléfono requerido</mat-error>
               </td>
               <td colspan="2" class="txt">
-                <input matInput  formControlName="telefono">
+                <input matInput formControlName="telefono">
               </td>
             </tr>
-            <tr aria-colspan="6" >
+            <tr aria-colspan="6">
               <td colspan="1">
                 <strong>Discapacidad: </strong>
                 <mat-error *ngIf="formGrupos.controls.discapacidad.invalid">Discapacidad requerido</mat-error>
@@ -101,7 +101,7 @@
               <td colspan="1" class="txt">
               </td>
             </tr>
-            <tr aria-colspan="6" >
+            <tr aria-colspan="6">
               <td colspan="1">
                 <strong>Ubicación: </strong>
               </td>
@@ -109,7 +109,8 @@
                 <mat-form-field appearance="outline">
                   <mat-label>PROVINCIA</mat-label>
                   <mat-select formControlName="idProvincia" (selectionChange)="selectProvincia($event)">
-                    <mat-option *ngFor="let provincia of provicias" [value]="provincia.id">{{provincia.provincia}}</mat-option>
+                    <mat-option *ngFor="let provincia of provicias"
+                                [value]="provincia.id">{{provincia.provincia}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
@@ -117,19 +118,21 @@
                 <mat-form-field appearance="outline">
                   <mat-label>CANTON</mat-label>
                   <mat-select formControlName="idCanton" (selectionChange)="selectCanton($event)">
-                    <mat-option *ngFor="let cantones of cantonFiltrado" [value]="cantones.id">{{cantones.canton}}</mat-option>
+                    <mat-option *ngFor="let cantones of cantonFiltrado"
+                                [value]="cantones.id">{{cantones.canton}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
             </tr>
-            <tr aria-colspan="6" >
+            <tr aria-colspan="6">
               <td colspan="1">
               </td>
               <td colspan="1">
                 <mat-form-field appearance="outline">
                   <mat-label>PARROQUIA</mat-label>
                   <mat-select formControlName="idParroquia">
-                    <mat-option *ngFor="let parroquia of parroquiaFiltrado" [value]="parroquia.id">{{parroquia.parroquia}}</mat-option>
+                    <mat-option *ngFor="let parroquia of parroquiaFiltrado"
+                                [value]="parroquia.id">{{parroquia.parroquia}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
@@ -146,10 +149,11 @@
               </td>
             </tr>
           </table>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="guardarCliente()" [disabled]="formGrupos.invalid">REGISTRAR</button>
-      </mat-card-actions>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="guardarCliente()" [disabled]="formGrupos.invalid">REGISTRAR
+          </button>
+        </mat-card-actions>
       </form>
     </mat-card>
   </mat-tab>
