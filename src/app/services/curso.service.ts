@@ -22,6 +22,8 @@ export class CursoService {
   savecurso(curso: Curso): Observable<Curso> {
     return this.http.post<Curso>(this.urlEndPoint+"/registrarCurso", curso, {headers: this.httpHeaders})
   }
+
+
  // agregarclienteacurso(curso: Curso, cliente:Cliente): Observable<Curso> {
  //    return this.http.post<Curso>(this.urlEndPoint+"/agregar/",cliente.id+"/"+ curso.id, {headers: this.httpHeaders})
  //  }
