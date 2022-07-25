@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Personausuario} from "../../../models/personausuario";
 import {UbicacionService} from "../../../services/ubicacion.service";
@@ -6,6 +6,50 @@ import {Barrio, Canton, Parroquia, Provincia} from "../../../models/ubicacion";
 import {MatSelectChange} from "@angular/material/select";
 import {ClienteService} from "../../../services/cliente.service";
 import Swal from "sweetalert2";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+
+
+export interface UserData {
+  id: string;
+  name: string;
+  progress: string;
+  fruit: string;
+}
+
+/** Constants used to fill up our data base. */
+const FRUITS: string[] = [
+  'blueberry',
+  'lychee',
+  'kiwi',
+  'mango',
+  'peach',
+  'lime',
+  'pomegranate',
+  'pineapple',
+];
+const NAMES: string[] = [
+  'Maia',
+  'Asher',
+  'Olivia',
+  'Atticus',
+  'Amelia',
+  'Jack',
+  'Charlotte',
+  'Theodore',
+  'Isla',
+  'Oliver',
+  'Isabella',
+  'Jasper',
+  'Cora',
+  'Levi',
+  'Violet',
+  'Arthur',
+  'Mia',
+  'Thomas',
+  'Elizabeth',
+];
 
 @Component({
   selector: 'app-nuevocliente',
@@ -15,11 +59,18 @@ import Swal from "sweetalert2";
 export class NuevoclienteComponent implements OnInit {
 
 
+
+  displayedColumns: string[] = ['id', 'cedula', 'nombres', 'apellidos','edad','genero','email','telefono','discapacidad','editar'];
+  dataSource: MatTableDataSource<Personausuario>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   provicias: Provincia[] = [];
   cantones: Canton[] = [];
   parroquias: Parroquia[] = [];
   barrios: Barrio[] = [];
-
 
   cantonFiltrado: Canton[] = [];
   parroquiaFiltrado: Parroquia[] = [];
@@ -39,6 +90,24 @@ export class NuevoclienteComponent implements OnInit {
       this.parroquias = value;
     })
     this.listarBarrios();
+    this.listarClientes()
+  }
+
+  listarClientes(){
+    this.clienteService.getAllClientes().subscribe(value => {
+      this.dataSource = new MatTableDataSource(value);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   formGrupos = new FormGroup({
@@ -86,14 +155,26 @@ export class NuevoclienteComponent implements OnInit {
       var barrio: Barrio = new Barrio();
       barrio.barrio = text + "";
       this.ubicacionService.saveBarrio(barrio).subscribe(value => {
-        Swal.fire({
-          text: 'Parroquia guardada',
-          confirmButtonColor: '#6897b7',
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Barrio guardado'
         })
         this.listarBarrios();
       }, error => {
         Swal.fire({
-          text: 'Error',
+          text: 'Error '+error.error.message,
           confirmButtonColor: '#a01b20',
         })
       })
@@ -102,24 +183,77 @@ export class NuevoclienteComponent implements OnInit {
 
   guardarCliente() {
     this.clienteService.saveCliente(this.formGrupos.getRawValue()).subscribe(value => {
-      Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: 'Cliente registrado',
+      this.vaciarFormulario()
+      this.listarClientes()
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
         showConfirmButton: false,
-        timer: 500
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Cliente guardado'
       })
     }, error => {
-      Swal.fire({
-        position: 'top',
-        icon: 'error',
-        title: 'Cliente no registrado',
+      this.listarClientes()
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
         showConfirmButton: false,
-        timer: 500
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'error',
+        title: 'Hubo un error, cliente no registrada'
       })
     })
-    console.log(this.formGrupos.getRawValue())
   }
 
 
+
+  vaciarFormulario(){
+    this.formGrupos.setValue({
+      apellidos: "",
+      cedula: "",
+      discapacidad: false,
+      email: "",
+      estadoCivil: "",
+      fechaNacimiento: null,
+      idBarrio: 0,
+      idCanton: 0,
+      idParroquia: 0,
+      idProvincia: 0,
+      nombres: "",
+      telefono: "",
+      genero: null})
+  }
+
+}
+/** Builds and returns a new User. */
+function createNewUser(id: number): UserData {
+  const name =
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
+    ' ' +
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
+    '.';
+
+  return {
+    id: id.toString(),
+    name: name,
+    progress: Math.round(Math.random() * 100).toString(),
+    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
+  };
 }
