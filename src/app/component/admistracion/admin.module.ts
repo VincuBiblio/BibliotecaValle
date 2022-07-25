@@ -14,6 +14,7 @@ import {TallerComponent} from "./taller/taller.component";
 import {NuevousuarioComponent} from "./nuevousuario/nuevousuario.component";
 import {TrasformaciondedatpsComponent} from "./trasformaciondedatps/trasformaciondedatps.component";
 import { NuevoclienteComponent } from './nuevocliente/nuevocliente.component';
+import { EditarclienteComponent } from './editarcliente/editarcliente.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
     path: 'nuevocliente',
     component: NuevoclienteComponent
   },
+  {
+    path: 'editarcliente/:id',
+    component: EditarclienteComponent
+  },
 
 ];
 
@@ -71,7 +76,8 @@ const routes: Routes = [
     CursoComponent,
     TallerComponent,
     NuevousuarioComponent,
-    NuevoclienteComponent
+    NuevoclienteComponent,
+    EditarclienteComponent
   ],
   exports: [RouterModule],
   imports: [

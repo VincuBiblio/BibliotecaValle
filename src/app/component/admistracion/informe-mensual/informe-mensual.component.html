@@ -1,10 +1,38 @@
 <section>
+    <div class="center-content">
+        <mat-card class="card21" style="width: 30%;">
+            <div>
+
+                <h3><strong>Seleccione fecha Actual:</strong></h3>
+                <input type="date" id="start" name="trip-start" value="2022-07-24" max="2022-07-24">
+                <br>
+                <br>
+                <h3><strong>Seleccione mes Informe:</strong></h3>
+                <input type="month" name="fecha" id="fecha" class="form-control" value="2022-07" min= "2022-03"max="2022-07">
+                <br>
+                <br>
+
+                <div class="example-button-row">
+                    <button  style="background-color: #ecb435; color:#000000;">CREAR <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+
+            </div>
+        </mat-card>
+    </div>
+</section>
+
+
+
+<br><br>
+<section>
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
 
         <!--Primera opcion-->
 
-        <mat-step [stepControl]="firstFormGroup2">
-            <form [formGroup]="firstFormGroup2">
+        <mat-step [stepControl]="sinValidacionGroup">
+            <form [formGroup]="sinValidacionGroup">
                 <ng-template matStepLabel>
                     <h3><strong>OBJETIVOS</strong></h3>
                 </ng-template>
@@ -92,8 +120,8 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Segunda opcion-->
-        <mat-step [stepControl]="secondFormGroup2">
-            <form [formGroup]="secondFormGroup2">
+        <mat-step [stepControl]="actividadFormGroup">
+            <form [formGroup]="actividadFormGroup">
                 <ng-template matStepLabel>
                     <h4><strong>ACTIVIDADES REALIZADAS</strong></h4>
                 </ng-template>
@@ -136,6 +164,7 @@
                             <br>
 
 
+
                             <body>
                                 <div style="text-align:center;" *ngIf="visibilidadTablaActividad==true">
 
@@ -146,7 +175,15 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Mis Actividades</th>
+                                                <th>
+                                                    <h3>Mis Actividades</h3>
+                                                </th>
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#000000;"
+                                                        (click)="borrar_Todas_Actividades()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
+
 
                                             </tr>
                                         </thead>
@@ -154,7 +191,7 @@
                                         <tr style="text-align: center;"
                                             *ngFor="let datosActividad of actividad; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width: 90%;">
                                                 <h4>{{actividad[i]}}</h4>
                                             </td>
 
@@ -177,17 +214,6 @@
 
                                     <br>
 
-
-                                    <div class="example-button-row">
-
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todas_Actividades()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
-                                    </div>
-
-
                                 </div>
                             </body>
 
@@ -204,9 +230,12 @@
                         <mat-icon>reply</mat-icon>REGRESAR
                     </button>
 
-                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
-                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
-                        </mat-icon></button>
+
+                    <button *ngIf="botonSeccionActividad==false" [disabled]="botonSeccionActividad" mat-button
+                        matStepperNext mat-flat-button style="background-color: #ecb435; color:#000000;">SIGUIENTE
+                        <mat-icon>forward
+                        </mat-icon>
+                    </button>
                 </div>
 
             </form>
@@ -217,10 +246,10 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Tercera opcion-->
-        <mat-step [stepControl]="secondFormGroup2">
-            <form [formGroup]="secondFormGroup2">
+        <mat-step [stepControl]="recursosFormGroup">
+            <form [formGroup]="recursosFormGroup">
                 <ng-template matStepLabel>
-                    <h4><strong>PLANEAMIENTO Y REALIZACIÓN DE LAS ACTIVIDADES</strong></h4>
+                    <h4><strong>RECURSOS</strong></h4>
                 </ng-template>
 
                 <div class="center-content">
@@ -231,7 +260,7 @@
 
                         <div>
 
-                            <h3><strong>3.1 Recursos:</strong></h3>
+                            <h3><strong>Recursos:</strong></h3>
                             <h4>(con que)
                             </h4>
 
@@ -269,7 +298,13 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Mis Recursos</th>
+                                                <th>Mis Recursos</th>
+
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#000000;"
+                                                        (click)="borrar_Todos_Recursos()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
 
                                             </tr>
                                         </thead>
@@ -277,7 +312,7 @@
                                         <tr style="text-align: center;"
                                             *ngFor="let datosRecursos of recurso; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width: 90%;">
                                                 <h4>{{recurso[i]}}</h4>
                                             </td>
 
@@ -301,14 +336,6 @@
                                     <br>
 
 
-                                    <div class="example-button-row">
-
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todos_Recursos()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
-                                    </div>
 
 
                                 </div>
@@ -321,6 +348,31 @@
 
                 </div>
 
+
+                <div class="example-button-row">
+
+                    <button mat-button matStepperPrevious style="background-color: #a01b20; color:#FFFFFF;">
+                        <mat-icon>reply</mat-icon>REGRESAR
+                    </button>
+
+                    <button *ngIf="botonSeccionRecurso==false" mat-button matStepperNext
+                        style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
+                        </mat-icon></button>
+                </div>
+
+            </form>
+        </mat-step>
+
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <!--Cuarta opcion-->
+        <mat-step [stepControl]="estrategiasFormGroup">
+            <form [formGroup]="estrategiasFormGroup">
+                <ng-template matStepLabel>
+                    <h4><strong>ESTRATEGIAS</strong></h4>
+                </ng-template>
+
+
+
                 <div class="center-content">
 
 
@@ -329,7 +381,7 @@
 
                         <div>
 
-                            <h3><strong>3.2 Estrategias:</strong></h3>
+                            <h3><strong>Estrategias:</strong></h3>
                             <h4>(como)
                             </h4>
 
@@ -368,7 +420,12 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Mis Estrategias</th>
+                                                <th>Mis Estrategias</th>
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#000000;"
+                                                        (click)="borrar_Todas_Estrategias()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
 
                                             </tr>
                                         </thead>
@@ -376,7 +433,7 @@
                                         <tr style="text-align: center;"
                                             *ngFor="let datosEstrategias of estrategia; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width:90%">
                                                 <h4>{{estrategia[i]}}</h4>
                                             </td>
 
@@ -400,14 +457,7 @@
                                     <br>
 
 
-                                    <div class="example-button-row">
 
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todas_Estrategias()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
-                                    </div>
 
 
                                 </div>
@@ -426,7 +476,7 @@
                         <mat-icon>reply</mat-icon>REGRESAR
                     </button>
 
-                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                    <button *ngIf="botonSeccionEstrategia==false" mat-button matStepperNext mat-flat-button
                         style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
                         </mat-icon></button>
                 </div>
@@ -434,13 +484,10 @@
             </form>
         </mat-step>
 
-
-
-
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Cuarta opcion-->
-        <mat-step [stepControl]="secondFormGroup3">
-            <form [formGroup]="secondFormGroup3">
+        <mat-step [stepControl]="sinValidacionGroup">
+            <form [formGroup]="sinValidacionGroup">
                 <ng-template matStepLabel>
                     <h4><strong>RESUMEN DE BENEFICIARIOS</strong></h4>
                 </ng-template>
@@ -502,8 +549,8 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Quinta opcion-->
-        <mat-step [stepControl]="secondFormGroup3">
-            <form [formGroup]="secondFormGroup3">
+        <mat-step [stepControl]="necesidadesFormGroup">
+            <form [formGroup]="necesidadesFormGroup">
                 <ng-template matStepLabel>
                     <h4><strong>NECESIDADES Y SUGERENCIAS DE LA BIBLIOTECA</strong></h4>
                 </ng-template>
@@ -554,7 +601,12 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Necesidades</th>
+                                                <th>Necesidades</th>
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#0f0535;"
+                                                        (click)="borrar_Todas_Necesidades()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
 
                                             </tr>
                                         </thead>
@@ -562,7 +614,7 @@
                                         <tr style="text-align: center;"
                                             *ngFor="let datosNecedidaes of necesidad; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width:90%">
                                                 <h4>{{necesidad[i]}}</h4>
                                             </td>
 
@@ -586,14 +638,6 @@
                                     <br>
 
 
-                                    <div class="example-button-row">
-
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todas_Necesidades()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
-                                    </div>
 
 
                                 </div>
@@ -612,7 +656,7 @@
                         <mat-icon>reply</mat-icon>REGRESAR
                     </button>
 
-                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                    <button *ngIf="botonSeccionNecesidad==false" n matStepperNext mat-flat-button
                         style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
                         </mat-icon></button>
                 </div>
@@ -622,8 +666,8 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Sexta opcion-->
-        <mat-step [stepControl]="secondFormGroup3">
-            <form [formGroup]="secondFormGroup3">
+        <mat-step [stepControl]="resultadosFormGroup">
+            <form [formGroup]="resultadosFormGroup">
                 <ng-template matStepLabel>
                     <h4><strong>RESULTADOS</strong></h4>
                 </ng-template>
@@ -675,7 +719,12 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Resultados</th>
+                                                <th>Resultados</th>
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#0f0535;"
+                                                        (click)="borrar_Todos_Resultados()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
 
                                             </tr>
                                         </thead>
@@ -683,7 +732,7 @@
                                         <tr style="text-align: center;"
                                             *ngFor="let datosResul of resultado; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width:90%">
                                                 <h4>{{resultado[i]}}</h4>
                                             </td>
 
@@ -709,11 +758,7 @@
 
                                     <div class="example-button-row">
 
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todos_Resultados()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
+
                                     </div>
 
 
@@ -735,7 +780,7 @@
                         <mat-icon>reply</mat-icon>REGRESAR
                     </button>
 
-                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                    <button *ngIf="botonSeccionResultado==false" mat-button matStepperNext mat-flat-button
                         style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
                         </mat-icon></button>
                 </div>
@@ -745,8 +790,8 @@
 
         <!-------------------------------------------------------------------------------------------------------------------->
         <!--Sextima opcion-->
-        <mat-step [stepControl]="secondFormGroup3">
-            <form [formGroup]="secondFormGroup3">
+        <mat-step [stepControl]="conclusionesFormGroup">
+            <form [formGroup]="conclusionesFormGroup">
                 <ng-template matStepLabel>
                     <h4><strong>CONCLUSIONES</strong></h4>
                 </ng-template>
@@ -798,15 +843,19 @@
                                         <thead>
                                             <tr>
 
-                                                <th colspan="2">Mis conclusiones</th>
-
+                                                <th>Mis conclusiones</th>
+                                                <th> <button mat-button matStepperPrevious
+                                                        style="background-color: #d9df67; color:#0f0535;"
+                                                        (click)="borrar_Todas_Conclusiones()">
+                                                        <mat-icon>highlight_off</mat-icon>
+                                                    </button></th>
                                             </tr>
                                         </thead>
 
                                         <tr style="text-align: center;"
                                             *ngFor="let datosConclu of conclusion; let i=index">
 
-                                            <td style="text-align:left ; width:5px">
+                                            <td style="text-align:left ; width:90%">
                                                 <h4>{{conclusion[i]}}</h4>
                                             </td>
 
@@ -830,14 +879,7 @@
                                     <br>
 
 
-                                    <div class="example-button-row">
 
-                                        <button mat-button matStepperPrevious
-                                            style="background-color: #a01b20; color:#FFFFFF;"
-                                            (click)="borrar_Todas_Conclusiones()">
-                                            <mat-icon>delete</mat-icon>BORRAR TABLA
-                                        </button>
-                                    </div>
 
 
                                 </div>
@@ -857,7 +899,7 @@
                         <mat-icon>reply</mat-icon>REGRESAR
                     </button>
 
-                    <button [disabled]="botonSeccionActividad" mat-button matStepperNext mat-flat-button
+                    <button *ngIf="botonSeccionConclusion==false" mat-button matStepperNext mat-flat-button
                         style="background-color: #ecb435; color:#000000;">SIGUIENTE <mat-icon>forward
                         </mat-icon></button>
                 </div>
@@ -919,8 +961,7 @@
 </section>
 
 <br>
-<button (click)="generarDoc()"
-                    style="background-color: #ecb435; color:#000000;">
-                    <mat-icon>save_alt
-                    </mat-icon>GENERAR DOCUMENTO
-                </button>
+<button (click)="generarDoc()" style="background-color: #ecb435; color:#000000;">
+    <mat-icon>save_alt
+    </mat-icon>GENERAR DOCUMENTO
+</button>

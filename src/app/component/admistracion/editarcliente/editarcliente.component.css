@@ -4,7 +4,7 @@
 }
 .example-card {
   margin: 1% auto;
-  width: max-content;
+  width: 70%;
   min-width: min-content;
   max-height: 600px;
   background: rgba(255, 255, 255, 0.81);

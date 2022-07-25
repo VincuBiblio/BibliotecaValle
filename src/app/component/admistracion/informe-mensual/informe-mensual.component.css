@@ -1,32 +1,32 @@
 table {
-    width: 100%; 
-    
-    
+    width: 100%;
+
+
 }
 
 .tabla-recursos{
-    width: 50%; 
+    width: 50%;
     border: 1px solid #ecb435;
     margin: 0 auto;
     border-collapse: collapse;
-    
+
 }
 
 th, td {
 
-   
+
     border-bottom: 1px solid #ecb435;
     background-color: #aedaf5;
     width: 25%;
-    
+
  }
 
  th{
     background: #ecb435;
-    
+
  }
- 
- 
+
+
 
 
 .card {
@@ -42,7 +42,7 @@ th, td {
     border: 1px solid #a01b20;
     border-inline: 3px solid #a01b20;
     background: #fefeff;
-    
+
 }
 
 
@@ -77,6 +77,17 @@ th, td {
 .center-content {
     margin-top: 3%;
     text-align: -webkit-center;
-    
+
 }
+
+
+.example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
+  }
+
+
 

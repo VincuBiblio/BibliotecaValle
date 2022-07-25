@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import swal from 'sweetalert2';
 import Docxtemplater from "docxtemplater";
 // @ts-ignore
 import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
-
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -25,6 +24,15 @@ export class informeMensualComponent implements OnInit {
   isLinear = true;
   panelOpenState = false;
 
+
+
+  public actividadFormGroup: FormGroup;
+  public recursosFormGroup: FormGroup;
+  public estrategiasFormGroup: FormGroup;
+  public resultadosFormGroup: FormGroup;
+  public necesidadesFormGroup: FormGroup;
+  public conclusionesFormGroup: FormGroup;
+
   public listaActividadStorage: any;
   public listaRecursoStorage: any;
   public listaEstrategiasStorage: any;
@@ -38,6 +46,7 @@ export class informeMensualComponent implements OnInit {
   public necesidad: Array<any> = [];
   public resultado: Array<any> = [];
   public conclusion: Array<any> = [];
+
 
   public visibilidadTablaActividad: boolean;
   public visibilidadTablaRecurso: boolean;
@@ -53,6 +62,8 @@ export class informeMensualComponent implements OnInit {
   public botonSeccionResultado: boolean;
   public botonSeccionConclusion: boolean;
 
+  public datoMes:any;
+  public datoAnio:any;
 
 
   firstFormGroup = this._formBuilder.group({
@@ -76,6 +87,10 @@ export class informeMensualComponent implements OnInit {
     secondCtrl: ['', ''],
   });
 
+  sinValidacionGroup = this._formBuilder.group({
+    secondCtrl: ['', ''],
+  });
+
 
 
 
@@ -88,16 +103,58 @@ export class informeMensualComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.obtener_datos();
+
+
+  }
+
+  obtener_datos() {
     this.obtener_Actividades();
     this.obtener_Recursos();
     this.obtener_Estrategias();
     this.obtener_Necesidades();
     this.obtener_Resultados();
     this.obtener_Conclusiones();
+  }
+
+  validacionFormGroup(numero: number, d1: number) {
+
+    switch (numero) {
+      case 1:
+        this.actividadFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+      case 2:
+        this.recursosFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+      case 3:
+        this.estrategiasFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+      case 4:
+        this.necesidadesFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+      case 5:
+        this.resultadosFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+      case 6:
+        this.conclusionesFormGroup = this._formBuilder.group({
+          firstCtrl: [d1, Validators.min(4)],
+        });
+        break;
+
+    }
 
 
   }
-
 
 
   //ACTIVIDADES
@@ -124,20 +181,27 @@ export class informeMensualComponent implements OnInit {
       this.listaActividadStorage = localStorage.getItem("Actividades");
       this.actividad = JSON.parse(this.listaActividadStorage);
       this.comprobarSiHayActividades();
+    } else {
+      this.validacionFormGroup(1, 2);
+      this.botonSeccionActividad = true;
     }
 
 
   }
 
   comprobarSiHayActividades() {
+
     if (this.actividad.length == 0) {
       this.visibilidadTablaActividad = false;
       this.botonSeccionActividad = true;
+      this.validacionFormGroup(1, 2);
     } else {
       this.visibilidadTablaActividad = true;
       this.botonSeccionActividad = false;
+      this.validacionFormGroup(1, 6);
     }
   }
+
 
 
   eliminar_Actividad(acti: any) {
@@ -185,6 +249,7 @@ export class informeMensualComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.actividad = [];
+        localStorage.setItem("Actividades", JSON.stringify(this.actividad));
         swal.fire(
           'Borrado!',
           'Las actividades han sido eliminadas.',
@@ -197,6 +262,8 @@ export class informeMensualComponent implements OnInit {
     )
 
   }
+
+
 
 
 
@@ -223,6 +290,8 @@ export class informeMensualComponent implements OnInit {
       this.listaRecursoStorage = localStorage.getItem("Recursos");
       this.recurso = JSON.parse(this.listaRecursoStorage);
       this.comprobarSiHayRecursos();
+    } else {
+      this.validacionFormGroup(2, 2);
     }
   }
 
@@ -231,9 +300,11 @@ export class informeMensualComponent implements OnInit {
     if (this.recurso.length == 0) {
       this.visibilidadTablaRecurso = false;
       this.botonSeccionRecurso = true;
+      this.validacionFormGroup(2, 2);
     } else {
       this.visibilidadTablaRecurso = true;
       this.botonSeccionRecurso = false;
+      this.validacionFormGroup(2, 6);
     }
   }
 
@@ -321,6 +392,8 @@ export class informeMensualComponent implements OnInit {
       this.listaEstrategiasStorage = localStorage.getItem("Estrategias");
       this.estrategia = JSON.parse(this.listaEstrategiasStorage);
       this.comprobarSiHayEstrategias();
+    }else{
+      this.validacionFormGroup(3, 2);
     }
   }
 
@@ -329,9 +402,11 @@ export class informeMensualComponent implements OnInit {
     if (this.estrategia.length == 0) {
       this.visibilidadTablaEstrategia = false;
       this.botonSeccionEstrategia = true;
+      this.validacionFormGroup(3, 2);
     } else {
       this.visibilidadTablaEstrategia = true;
       this.botonSeccionEstrategia = false;
+      this.validacionFormGroup(3, 6);
     }
   }
 
@@ -419,6 +494,8 @@ export class informeMensualComponent implements OnInit {
       this.listaNecesidadesStorage = localStorage.getItem("Necesidades");
       this.necesidad = JSON.parse(this.listaNecesidadesStorage);
       this.comprobarSiHayNecesidades();
+    }else{
+      this.validacionFormGroup(4, 2);
     }
   }
 
@@ -427,9 +504,11 @@ export class informeMensualComponent implements OnInit {
     if (this.necesidad.length == 0) {
       this.visibilidadTablaNecesidad = false;
       this.botonSeccionNecesidad = true;
+      this.validacionFormGroup(4, 2);
     } else {
       this.visibilidadTablaNecesidad = true;
       this.botonSeccionNecesidad = false;
+      this.validacionFormGroup(4, 6);
     }
   }
 
@@ -515,6 +594,8 @@ export class informeMensualComponent implements OnInit {
       this.listaResultadosStorag = localStorage.getItem("Resultados");
       this.resultado = JSON.parse(this.listaResultadosStorag);
       this.comprobarSiHayResultados();
+    }else{
+      this.validacionFormGroup(5, 2);
     }
   }
 
@@ -523,9 +604,11 @@ export class informeMensualComponent implements OnInit {
     if (this.resultado.length == 0) {
       this.visibilidadTablaResultado = false;
       this.botonSeccionResultado = true;
+      this.validacionFormGroup(5, 2);
     } else {
       this.visibilidadTablaResultado = true;
       this.botonSeccionResultado = false;
+      this.validacionFormGroup(5, 6);
     }
   }
 
@@ -611,6 +694,8 @@ export class informeMensualComponent implements OnInit {
       this.listaConclusionesStorag = localStorage.getItem("Conclusiones");
       this.conclusion = JSON.parse(this.listaConclusionesStorag);
       this.comprobarSiHayConclusiones();
+    }else{
+      this.validacionFormGroup(6, 2);
     }
   }
 
@@ -619,9 +704,11 @@ export class informeMensualComponent implements OnInit {
     if (this.conclusion.length == 0) {
       this.visibilidadTablaConclusion = false;
       this.botonSeccionConclusion = true;
+      this.validacionFormGroup(6, 2);
     } else {
       this.visibilidadTablaConclusion = true;
       this.botonSeccionConclusion = false;
+      this.validacionFormGroup(6, 6);
     }
   }
 

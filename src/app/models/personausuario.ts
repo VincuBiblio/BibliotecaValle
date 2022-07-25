@@ -13,8 +13,8 @@ export class Personausuario{
 
   //CLIENTE
   estadoCivil?:String;
-  discapacidad?:Boolean;
-  barrio?:String;
+  discapacidad?:boolean;
+  idBarrio?:Number;
   idCanton?:Number;
   idProvincia?:Number
   idParroquia?:Number;
