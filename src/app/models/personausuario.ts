@@ -1,4 +1,4 @@
-export class Personausuario {
+export class Personausuario{
   id?:Number;
   cedula?:String;
   apellidos?:String;
@@ -9,4 +9,13 @@ export class Personausuario {
   telefono?:String;
   email?:String;
   clave?:String;
+
+
+  //CLIENTE
+  estadoCivil?:String;
+  discapacidad?:Boolean;
+  barrio?:String;
+  idCanton?:Number;
+  idProvincia?:Number
+  idParroquia?:Number;
 }

@@ -3,8 +3,9 @@
   /*background: #E4EFF3;*/
 }
 .example-card {
-  margin: 0 auto;
-  width: 60%;
+  margin: 1% auto;
+  width: max-content;
+  min-width: min-content;
   max-height: 600px;
   background: rgba(255, 255, 255, 0.81);
   border: 1px solid #455a64;
