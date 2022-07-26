@@ -11,7 +11,7 @@ import { Provincia } from '../models/ubicacion';
 })
 
 export class informeMensualService {
-    _url = 'http://localhost:8082/api'
+    _url = 'http://localhost:8080/api'
 
 
     private httpHeaders = new HttpHeaders({
