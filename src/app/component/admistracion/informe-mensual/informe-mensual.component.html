@@ -5,7 +5,7 @@
 
                 <br>
                 <h3><strong>Seleccione mes Informe:</strong></h3>
-                
+
                 <mat-form-field appearance="fill">
                     <mat-label>Mes y Año</mat-label>
                     <input matInput [matDatepicker]="dp" [formControl]="date">
@@ -19,7 +19,7 @@
                 <br>
                 <br>
                 <td colspan="1" class="txt" style="background: white;border-bottom: 1px solid #ffffff">
-                    <button mat-raised-button color="warn">CREAR INFORME</button>
+                    <button mat-raised-button color="warn" (click)="crearInforme()">CREAR INFORME</button>
                 </td>
 
                 <br>

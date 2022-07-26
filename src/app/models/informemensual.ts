@@ -1,4 +1,4 @@
-export class servicioUsado1{
+export class servicioUsado{
     genero?:any;
   servicio?:any;
 }

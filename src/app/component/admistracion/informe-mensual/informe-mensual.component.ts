@@ -17,6 +17,7 @@ import * as _moment from 'moment';
 // @ts-ignore
 import { default as _rollupMoment, Moment } from 'moment';
 import { informeMensualService } from 'src/app/services/infomemensual.service';
+import { servicioUsado } from 'src/app/models/informemensual';
 
 const moment = _rollupMoment || _moment;
 
@@ -83,6 +84,8 @@ export class informeMensualComponent implements OnInit {
   public resultado: Array<any> = [];
   public conclusion: Array<any> = [];
 
+  public servicioUsado: servicioUsado[] = [];
+
 
   public visibilidadTablaActividad: boolean;
   public visibilidadTablaRecurso: boolean;
@@ -112,7 +115,37 @@ export class informeMensualComponent implements OnInit {
   public anioInforme: any;
 
 
+  //Para estadisticas de servivio usado
+  public totalMascuRepositorio: number = 0;
+  public totalFemeRepositorio: number = 0;
+  public totalBeneRepositorio: number = 0;
 
+  public totalMascuBiblioteca: number = 0;
+  public totalFemeBiblioteca: number = 0;
+  public totalBeneBiblioteca: number = 0;
+
+  public totalMascuInternet: number = 0;
+  public totalFemeInternet: number = 0;
+  public totalBeneInternet: number = 0;
+
+
+  public totalMascuImpresoras: number = 0;
+  public totalFemeImpresoras: number = 0;
+  public totalBeneImpresoras: number = 0;
+
+
+  public totalMascuCursos: number = 0;
+  public totalFemeCursos: number = 0;
+  public totalBeneCursos: number = 0;
+
+
+  //Nombre para servivios
+
+  public nombreRepositorio: string = "REPOSITORIO";
+  public nombreBiblioteca: string = "BIBLIOTECA";
+  public nombreInternet: string = "INTERNET";
+  public nombreImpresora: string = "IMPRESIÓN/COPIA ";
+  public nombreCursos: string = "TALLERES Y ACTIVIDADES CULTURALES ";
 
   sinValidacionGroup = this._formBuilder.group({
     secondCtrl: ['', ''],
@@ -131,7 +164,6 @@ export class informeMensualComponent implements OnInit {
 
     this.capturarFechaActual();
     this.obtener_datos();
-    this.listarServicioDiario();
 
   }
 
@@ -146,12 +178,54 @@ export class informeMensualComponent implements OnInit {
     this.obtener_Conclusiones();
   }
 
+  //listar
 
   public listarServicioDiario() {
-    this.informeMensualService.getServicioDiario(7, 2022).subscribe(value => {
+
+    this.informeMensualService.getServicioDiario1(this.mesInforme, this.anioInforme).subscribe(value => {
       console.log(value);
-      //this.provicias = value;
+      this.servicioUsado = value;
+      this.condicionDatos();
     })
+
+  }
+
+  //CREAR INFORME
+
+  crearInforme() {
+    this.listarServicioDiario();
+  }
+
+  //CONDICION LISTA
+  condicionDatos() {
+
+    if (this.servicioUsado == null) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No existe información del mes seleccionado!',
+      })
+    } else {
+      this.contarDatosActividades();
+    }
+  }
+
+  //DESFRAGMENTAR DATOS
+  contarDatosActividades() {
+    for (var i = 0; i < this.servicioUsado.length; i++) {
+
+
+      alert(this.servicioUsado[i].servicio);
+      /*
+      if (this.informeFinalDatos[i].alumno.idAlumno == this.informeFinal.alumno.idAlumno) {
+        this.identificador=this.informeFinal.alumno.idAlumno;
+        con = 1;
+
+        break;
+      }
+*/
+
+    }
   }
 
 
@@ -264,7 +338,8 @@ export class informeMensualComponent implements OnInit {
   }
 
 
-
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //SECCION LLENADO DE INFORMACIÓN
   //ACTIVIDADES
 
   agregar_Actividad(actividad: any) {
@@ -892,11 +967,34 @@ export class informeMensualComponent implements OnInit {
     let necesidadesDoc: any[] = [];
     let resultadosDoc: any[] = [];
     let conclusionesDoc: any[] = [];
+
     let dia: any = this.diaActual;
     let mes: any = this.mesActualTexto;
     let anio: any = this.anioActual;
     let mesInforme: any = this.mesInformeTexto;
     let anioInforme: any = this.anioInforme;
+
+    let totalMascuRepositorio: any = this.totalMascuRepositorio;
+    let totalFemeRepositorio: any = this.totalFemeRepositorio;
+    let totalBeneRepositorio: any = this.totalBeneRepositorio;
+
+    let totalMascuBiblioteca: any = this.totalMascuBiblioteca;
+    let totalFemeBiblioteca: any = this.totalFemeBiblioteca;
+    let totalBeneBiblioteca: any = this.totalBeneBiblioteca;
+
+    let totalMascuInternet: any = this.totalMascuInternet;
+    let totalFemeInternet: any = this.totalFemeInternet;
+    let totalBeneInternet: any = this.totalBeneInternet;
+
+
+    let totalMascuImpresoras: any = this.totalMascuImpresoras;
+    let totalFemeImpresoras: any = this.totalFemeImpresoras;
+    let totalBeneImpresoras: any = this.totalBeneImpresoras;
+
+
+    let totalMascuCursos: any = this.totalMascuCursos;
+    let totalFemeCursos: any = this.totalFemeCursos;
+    let totalBeneCursos: any = this.totalBeneCursos;
 
     for (var i = 0; i < this.actividad.length; i++) {
       let des: any = {
@@ -953,12 +1051,27 @@ export class informeMensualComponent implements OnInit {
       mes: mes,
       anio: anio,
       mesInforme: mesInforme,
+      mesInformeMayus: mesInforme.toUpperCase(),
       anioInforme: anioInforme,
-
+      datorepo: totalBeneRepositorio,
+      datobibli: totalBeneBiblioteca,
+      datointe: totalBeneInternet,
+      datoimpr: totalBeneImpresoras,
+      datotall: totalBeneCursos,
+      rema:totalMascuRepositorio,
+      refe:totalFemeRepositorio,
+      bima:totalMascuBiblioteca,
+      bife:totalFemeBiblioteca,
+      inma:totalMascuInternet,
+      infe:totalFemeInternet,
+      imma:totalMascuImpresoras,
+      imfe:totalFemeImpresoras,
+      tama:totalMascuCursos,
+      tafe:totalFemeCursos,
 
 
     }
-    let nombreDocumento: any =  this.mesInformeTexto + ' ' + this.anioInforme+ ' Informe Mensual.docx';
+    let nombreDocumento: any = this.mesInformeTexto + ' ' + this.anioInforme + ' Informe Mensual.docx';
     this.generate(dataGeneral, nombreDocumento);
 
   }
@@ -1017,7 +1130,7 @@ export class informeMensualComponent implements OnInit {
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
       });
       // Output the document using Data-URI
-      saveAs(out,nombreDoc);
+      saveAs(out, nombreDoc);
     });
   }
 

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from "rxjs";
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { servicioUsado1 } from '../models/informemensual';
 import { Provincia } from '../models/ubicacion';
+import { servicioUsado } from '../models/informemensual';
 
 @Injectable({
     providedIn: 'root'
@@ -34,6 +34,10 @@ export class informeMensualService {
             headers: header
         });
     }
+
+    getServicioDiario1(mes:any,anio:any):Observable<servicioUsado[]>{
+        return this.http.get( `${this._url}/${'servicio/cliente/usoServicios'}/${mes}/${anio}`,{headers: this.httpHeaders}).pipe(map(Response => Response as servicioUsado[]))
+      }
 
 
 }
