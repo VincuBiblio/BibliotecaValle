@@ -12,10 +12,16 @@ export class Personausuario{
 
 
   //CLIENTE
+  idCliente?:Number;
   estadoCivil?:String;
   discapacidad?:boolean;
   idBarrio?:Number;
   idCanton?:Number;
   idProvincia?:Number
   idParroquia?:Number;
+
+}
+export class Clientecurso{
+  curso_id?:Number;
+  cliente_id?:Number;
 }

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Curso} from "../../../models/curso";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {CursoService} from "../../../services/curso.service";
 import {range} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
+import {Personausuario} from "../../../models/personausuario";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-curso',
@@ -12,6 +16,14 @@ import {range} from "rxjs";
   styleUrls: ['./curso.component.css']
 })
 export class CursoComponent implements OnInit {
+
+  displayedColumns: string[] = ['id', 'nombre', 'fechainicio', 'fechafin','responsable','editar'];
+  dataSource: MatTableDataSource<Curso>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   isLinear = true;
   firstFormGroup!: FormGroup;
   curso: Curso = new Curso();
@@ -23,12 +35,29 @@ export class CursoComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       nombrecurso: ['', Validators.required],
       responsable: ['', Validators.required],
-      // start: new FormControl<Date | null>(null),
-      // end: new FormControl<Date | null>(null),
       start: ['', Validators.required],
       end: ['', Validators.required]
     });
+    this.listarCursos()
   }
+
+
+  listarCursos(){
+    this.cursoService.getAll().subscribe(value => {
+      this.dataSource = new MatTableDataSource(value);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   guardarcurso(curso: Curso) {
     this.cursoService.savecurso(this.curso).subscribe(data => {
@@ -45,7 +74,7 @@ export class CursoComponent implements OnInit {
           popup: 'animate__animated animate__fadeOutUp'
         }
       })
-      this.router.navigate(['/panel/biblioteca']);
+      this.router.navigate(['/panel/biblioteca/home']);
       ///lista de cursos
 
     }, err => {

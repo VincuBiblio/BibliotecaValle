@@ -19,7 +19,7 @@ export class TallerComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
-      nombrecurso: ['', Validators.required],
+      nombretaller: ['', Validators.required],
       responsable: ['', Validators.required],
       inicio: ['', Validators.required],
       fin: ['', Validators.required],

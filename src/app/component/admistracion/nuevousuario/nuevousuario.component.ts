@@ -65,7 +65,7 @@ export class NuevousuarioComponent implements OnInit {
           popup: 'animate__animated animate__fadeOutUp'
         }
       })
-      this.router.navigate(['/panel/biblioteca']);
+      this.router.navigate(['/panel/biblioteca/home']);
     }, err => {
       Swal.fire({
         title: 'No registrado',

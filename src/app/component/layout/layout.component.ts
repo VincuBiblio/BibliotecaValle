@@ -28,11 +28,11 @@ export class LayoutComponent implements OnInit {
     if (JSON.parse(sessionStorage['personausuario']) != "") {
       this.personausuario = JSON.parse(sessionStorage['personausuario']);
       this.email = JSON.parse(sessionStorage['personausuario']).email
-      if(this.email=='leogg@gmail.com'){
-        this.activar=false;
-      }else{
-        this.activar=true;
-      }
+      // if(this.email=='leogg@gmail.com'){
+      //   this.activar=false;
+      // }else{
+      //   this.activar=true;
+      // }
 
       sessionStorage.clear;
     } else {
