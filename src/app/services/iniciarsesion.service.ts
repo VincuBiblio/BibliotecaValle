@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   providedIn: 'root'
 })
 export class IniciarsesionService {
-  private urlEndPoint: string = 'http://localhost:8080/api/persona';
+  private urlEndPoint: string = 'http://localhost:8082/api/persona';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 

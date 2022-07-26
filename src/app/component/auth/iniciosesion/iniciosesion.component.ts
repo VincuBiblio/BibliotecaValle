@@ -45,7 +45,7 @@ export class IniciosesionComponent implements OnInit {
       data => {
         sessionStorage.setItem('personausuario', JSON.stringify(data));
         console.log(data)
-        this.router.navigate(['/panel/biblioteca']);
+        this.router.navigate(['/panel/biblioteca/home']);
       }, err => {
         Swal.fire({
           title: 'Usuario o constraseña incorrectos',

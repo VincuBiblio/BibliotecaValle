@@ -10,7 +10,7 @@ import {Personausuario} from "../models/personausuario";
 })
 export class UbicacionService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api';
+  private urlEndPoint: string = 'http://localhost:8082/api';
 
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

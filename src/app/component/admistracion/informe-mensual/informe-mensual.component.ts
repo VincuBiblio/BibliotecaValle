@@ -7,6 +7,32 @@ import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
 
+import { FormControl } from '@angular/forms';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+
+
+import * as _moment from 'moment';
+// @ts-ignore
+import { default as _rollupMoment, Moment } from 'moment';
+import { informeMensualService } from 'src/app/services/infomemensual.service';
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
+
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
@@ -14,7 +40,17 @@ function loadFile(url, callback) {
 @Component({
   selector: 'app-informe-mensual',
   templateUrl: './informe-mensual.component.html',
-  styleUrls: ['./informe-mensual.component.css']
+  styleUrls: ['./informe-mensual.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
+
 
 })
 
@@ -62,30 +98,21 @@ export class informeMensualComponent implements OnInit {
   public botonSeccionResultado: boolean;
   public botonSeccionConclusion: boolean;
 
-  public datoMes:any;
-  public datoAnio:any;
 
 
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
+  public fecha: any;
 
-  firstFormGroup2 = this._formBuilder.group({
-    firstCtrl: ['', ''],
-  });
-  secondFormGroup2 = this._formBuilder.group({
-    secondCtrl: ['', ''],
-  });
+  public diaActual: any;
+  public mesActual: any;
+  public mesActualTexto: any;
+  public anioActual: any;
 
-  firstFormGroup3 = this._formBuilder.group({
-    firstCtrl: ['', ''],
-  });
-  secondFormGroup3 = this._formBuilder.group({
-    secondCtrl: ['', ''],
-  });
+  public mesInforme: any;
+  public mesInformeTexto: any;
+  public anioInforme: any;
+
+
+
 
   sinValidacionGroup = this._formBuilder.group({
     secondCtrl: ['', ''],
@@ -93,20 +120,22 @@ export class informeMensualComponent implements OnInit {
 
 
 
-
-
-
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private informeMensualService: informeMensualService) {
 
   }
 
 
   ngOnInit(): void {
 
+    this.capturarFechaActual();
     this.obtener_datos();
-
+    this.listarServicioDiario();
 
   }
+
+
 
   obtener_datos() {
     this.obtener_Actividades();
@@ -116,6 +145,15 @@ export class informeMensualComponent implements OnInit {
     this.obtener_Resultados();
     this.obtener_Conclusiones();
   }
+
+
+  public listarServicioDiario() {
+    this.informeMensualService.getServicioDiario(7, 2022).subscribe(value => {
+      console.log(value);
+      //this.provicias = value;
+    })
+  }
+
 
   validacionFormGroup(numero: number, d1: number) {
 
@@ -155,6 +193,87 @@ export class informeMensualComponent implements OnInit {
 
 
   }
+
+
+  // FECHA ACTUAL
+  date = new FormControl(moment());
+
+  setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonthAndYear.month());
+    ctrlValue.year(normalizedMonthAndYear.year());
+    this.date.setValue(ctrlValue);
+    this.anioInforme = normalizedMonthAndYear.year();
+    this.mesInforme = normalizedMonthAndYear.month() + 1;
+    this.convertirMes(this.mesInforme, 2);
+    datepicker.close();
+  }
+
+  capturarFechaActual() {
+    let date = new Date();
+    //this.fecha = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
+    this.diaActual = String(date.getDate()).padStart(2, '0');
+    this.mesActual = String(date.getMonth() + 1).padStart(2, '0');
+    this.anioActual = date.getFullYear();
+    this.convertirMes(this.mesActual, 1);
+  }
+
+
+  convertirMes(mes: any, condicion: number) {
+
+
+    let mesconve;
+
+    switch (mes) {
+      case "01":
+        mesconve = "Enero";
+        break;
+      case "02":
+        mesconve = "Febrero";
+        break;
+      case "03":
+        mesconve = "Marzo";
+        break;
+      case "04":
+        mesconve = "Abril";
+        break;
+      case "05":
+        mesconve = "Mayo";
+        break;
+      case "06":
+        mesconve = "Junio";
+        break;
+      case "07":
+        mesconve = "Julio";
+        break;
+      case "8":
+        mesconve = "Agosto";
+        break;
+      case "9":
+        mesconve = "Septiembre";
+        break;
+      case "10":
+        mesconve = "Octubre";
+        break;
+      case "11":
+        mesconve = "Noviembre";
+        break;
+      case "12":
+        mesconve = "Diciembre";
+        break;
+
+    }
+
+    if (condicion == 1) {
+      this.mesActualTexto = mesconve;
+    }
+
+    if (condicion == 2) {
+      this.mesInformeTexto = mesconve;
+    }
+
+  }
+
 
 
   //ACTIVIDADES
@@ -392,7 +511,7 @@ export class informeMensualComponent implements OnInit {
       this.listaEstrategiasStorage = localStorage.getItem("Estrategias");
       this.estrategia = JSON.parse(this.listaEstrategiasStorage);
       this.comprobarSiHayEstrategias();
-    }else{
+    } else {
       this.validacionFormGroup(3, 2);
     }
   }
@@ -494,7 +613,7 @@ export class informeMensualComponent implements OnInit {
       this.listaNecesidadesStorage = localStorage.getItem("Necesidades");
       this.necesidad = JSON.parse(this.listaNecesidadesStorage);
       this.comprobarSiHayNecesidades();
-    }else{
+    } else {
       this.validacionFormGroup(4, 2);
     }
   }
@@ -594,7 +713,7 @@ export class informeMensualComponent implements OnInit {
       this.listaResultadosStorag = localStorage.getItem("Resultados");
       this.resultado = JSON.parse(this.listaResultadosStorag);
       this.comprobarSiHayResultados();
-    }else{
+    } else {
       this.validacionFormGroup(5, 2);
     }
   }
@@ -694,7 +813,7 @@ export class informeMensualComponent implements OnInit {
       this.listaConclusionesStorag = localStorage.getItem("Conclusiones");
       this.conclusion = JSON.parse(this.listaConclusionesStorag);
       this.comprobarSiHayConclusiones();
-    }else{
+    } else {
       this.validacionFormGroup(6, 2);
     }
   }
@@ -774,7 +893,7 @@ export class informeMensualComponent implements OnInit {
 
 
 
-  //GENERAR DOCUMENTO
+  //DOCUMENTO
 
   generarDoc() {
 
@@ -784,7 +903,11 @@ export class informeMensualComponent implements OnInit {
     let necesidadesDoc: any[] = [];
     let resultadosDoc: any[] = [];
     let conclusionesDoc: any[] = [];
-
+    let dia: any = this.diaActual;
+    let mes: any = this.mesActualTexto;
+    let anio: any = this.anioActual;
+    let mesInforme: any = this.mesInformeTexto;
+    let anioInforme: any = this.anioInforme;
 
     for (var i = 0; i < this.actividad.length; i++) {
       let des: any = {
@@ -837,7 +960,11 @@ export class informeMensualComponent implements OnInit {
       necesidades: necesidadesDoc,
       resultados: resultadosDoc,
       conclusiones: conclusionesDoc,
-      mesInforme: '28',
+      dia: dia,
+      mes: mes,
+      anio: anio,
+      mesInforme: mesInforme,
+      anioInforme: anioInforme,
 
 
 

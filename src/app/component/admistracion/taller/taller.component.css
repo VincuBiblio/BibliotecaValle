@@ -11,6 +11,27 @@
   border: 1px solid #455a64;
   border-radius: 10px;
 }
+.borde{
+  margin: 1% auto;
+  border: 1px solid #b4b5b7;
+}
+.example-cards {
+  margin: 1% auto;
+  width: 75%;
+  background: rgba(255, 255, 255, 0.81);
+  border: 1px solid #b4b5b7;
+  border-radius: 10px;
+}
+.example-cardinfo{
+  box-shadow: 12px 12px 12px #bebdbd;
+  max-width: 450px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid #676767;
+  text-align: center;
+  background: #f8f8f8;
+}
 mat-form-field{
   width: 100%;
   border-radius: 8px;
@@ -27,7 +48,11 @@ strong{
   width: 60%;
   text-align: end;
 }
-
+.validacion{
+  color: #fd0043;
+  font-size: 12px;
+  margin-right: 25px;
+}
 .txt{
   width: 70%;
 }

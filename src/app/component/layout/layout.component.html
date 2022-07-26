@@ -22,7 +22,7 @@
       <p style="text-align: center;">Bibliotecaria</p>
       <p style="text-align: center;">0105345490</p>
       <mat-divider></mat-divider>
-      <button mat-button class="button-accordion" routerLink="/registro-empresa">
+      <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/home'">
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </button>
@@ -38,17 +38,22 @@
               <span>Mi Espacio</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
-            <button [disabled]="activar" mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/nuevousuario'">
-              <span>Nuevo Bibliotecario</span>
+<!--            <button [disabled]="activar" mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/nuevousuario'">-->
+          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/nuevousuario'">
+          <span>Nuevo Bibliotecario</span>
             </button>
           <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/curso'">
             <mat-icon>add</mat-icon>
             <span>Curso</span>
           </button>
-          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/taller'">
+          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/agregarcliente_cursos'">
             <mat-icon>add</mat-icon>
-            <span>Taller</span>
+            <span>Agregar clientes a Cursos</span>
           </button>
+<!--          <button mat-button class="button-accordion" [routerLink]="'/panel/biblioteca/taller'">-->
+<!--            <mat-icon>add</mat-icon>-->
+<!--            <span>Talleres</span>-->
+<!--          </button>-->
         </mat-expansion-panel>
       </mat-accordion>
 

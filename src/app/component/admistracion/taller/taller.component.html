@@ -10,21 +10,26 @@
           <mat-card-content>
             <br>
             <table style="width: 100%">
-              <tr aria-colspan="3">
+              <tr aria-colspan="4">
                 <td colspan="1">
                   <strong>Nombre del taller: </strong>
                 </td>
                 <td colspan="2" class="txt">
-                  <input matInput formControlName="nombrecurso" placeholder="Nombre del Taller" required [(ngModel)]="taller.nombre" autofocus>
+                  <input matInput formControlName="nombretaller"  required [(ngModel)]="taller.nombre" autofocus>
                 </td>
-
+                <td colspan="1">
+                  <b class="validacion"  *ngIf="firstFormGroup.get('nombretaller').hasError('required')">*Requerido</b>
+                </td>
               </tr>
-              <tr aria-colspan="3">
+              <tr aria-colspan="4">
                 <td colspan="1">
                   <strong>Nombre del Responsable: </strong>
                 </td>
                 <td colspan="2" class="txt">
-                  <input matInput formControlName="responsable" placeholder="Responsable" required [(ngModel)]="taller.responsable" autofocus>
+                  <input matInput formControlName="responsable"  required [(ngModel)]="taller.responsable" autofocus>
+                </td>
+                <td colspan="1">
+                  <b class="validacion"  *ngIf="firstFormGroup.get('responsable').hasError('required')">*Requerido</b>
                 </td>
               </tr>
               <tr aria-colspan="3">
@@ -40,6 +45,9 @@
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker></mat-date-range-picker>
                   </mat-form-field>
+                </td>
+                <td colspan="1">
+
                 </td>
               </tr>
 
