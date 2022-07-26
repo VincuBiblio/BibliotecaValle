@@ -204,9 +204,10 @@ export class informeMensualComponent implements OnInit {
     ctrlValue.year(normalizedMonthAndYear.year());
     this.date.setValue(ctrlValue);
     this.anioInforme = normalizedMonthAndYear.year();
-    this.mesInforme = normalizedMonthAndYear.month() + 1;
+    this.mesInforme = String(normalizedMonthAndYear.month() + 1);
     this.convertirMes(this.mesInforme, 2);
     datepicker.close();
+
   }
 
   capturarFechaActual() {
@@ -214,6 +215,7 @@ export class informeMensualComponent implements OnInit {
     //this.fecha = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     this.diaActual = String(date.getDate()).padStart(2, '0');
     this.mesActual = String(date.getMonth() + 1).padStart(2, '0');
+
     this.anioActual = date.getFullYear();
     this.convertirMes(this.mesActual, 1);
   }
@@ -224,45 +226,32 @@ export class informeMensualComponent implements OnInit {
 
     let mesconve;
 
-    switch (mes) {
-      case "01":
-        mesconve = "Enero";
-        break;
-      case "02":
-        mesconve = "Febrero";
-        break;
-      case "03":
-        mesconve = "Marzo";
-        break;
-      case "04":
-        mesconve = "Abril";
-        break;
-      case "05":
-        mesconve = "Mayo";
-        break;
-      case "06":
-        mesconve = "Junio";
-        break;
-      case "07":
-        mesconve = "Julio";
-        break;
-      case "8":
-        mesconve = "Agosto";
-        break;
-      case "9":
-        mesconve = "Septiembre";
-        break;
-      case "10":
-        mesconve = "Octubre";
-        break;
-      case "11":
-        mesconve = "Noviembre";
-        break;
-      case "12":
-        mesconve = "Diciembre";
-        break;
-
+    if (mes == "1" || mes == "01") {
+      mesconve = "Enero";
+    } else if (mes == "2" || mes == "02") {
+      mesconve = "Febrero";
+    } else if (mes == "3" || mes == "03") {
+      mesconve = "Marzo";
+    } else if (mes == "4" || mes == "04") {
+      mesconve = "Abril";
+    } else if (mes == "5" || mes == "05") {
+      mesconve = "Mayo";
+    } else if (mes == "6" || mes == "06") {
+      mesconve = "Junio";
+    } else if (mes == "7" || mes == "07") {
+      mesconve = "Julio";
+    } else if (mes == "8" || mes == "08") {
+      mesconve = "Agosto";
+    } else if (mes == "9" || mes == "09") {
+      mesconve = "Septiembre";
+    } else if (mes == "10") {
+      mesconve = "Octubre";
+    } else if (mes == "11") {
+      mesconve = "Noviembre";
+    } else if (mes == "12") {
+      mesconve = "Diciembre";
     }
+
 
     if (condicion == 1) {
       this.mesActualTexto = mesconve;
@@ -969,8 +958,8 @@ export class informeMensualComponent implements OnInit {
 
 
     }
-
-    this.generate(dataGeneral, "InformeFinal");
+    let nombreDocumento: any =  this.mesInformeTexto + ' ' + this.anioInforme+ ' Informe Mensual.docx';
+    this.generate(dataGeneral, nombreDocumento);
 
   }
 
@@ -1028,7 +1017,7 @@ export class informeMensualComponent implements OnInit {
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
       });
       // Output the document using Data-URI
-      saveAs(out, "mes año informe Mensual.docx");
+      saveAs(out,nombreDoc);
     });
   }
 
